@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
+import {RavDataService} from "../../core/services/rav-data.service";
 
 @Component({
   selector: 'app-test',
@@ -8,5 +9,6 @@ import { Component } from '@angular/core';
   styleUrl: './test.component.css'
 })
 export class TestComponent {
+  ravDataService = inject(RavDataService);
 
 }

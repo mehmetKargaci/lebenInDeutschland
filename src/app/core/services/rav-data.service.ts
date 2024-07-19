@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 export class Question {
     number= '';
+    thema='';
     trueAnswer='';
     question='';
     answerA='';
@@ -17,11 +18,11 @@ export class Question {
   providedIn: 'root'
 })
 
-export class CalculationService {
-
+export class RavDataService {
 private _questions = [
     {
       number : '1',
+      thema:"Grundrechte",
       trueAnswer : 'D',
       question : 'In Deutschland dürfen Menschen offen etwas gegen die Regierung sagen, weil…',
       answerA : 'hier Religionsfreiheit gilt.',
@@ -32,6 +33,7 @@ private _questions = [
     },
     {
       number : '21',
+      thema:"Verfassungsorgane",
       trueAnswer : 'B',
       question : 'In Deutschland können Eltern bis zum 14. Lebensjahr ihres Kindes entscheiden, ob es in der Schule am …',
       answerA : 'Geschichtsunterricht teilnimmt.',
@@ -42,7 +44,6 @@ private _questions = [
     }
     ];
 questions= structuredClone(this._questions)
-
 
 
 }

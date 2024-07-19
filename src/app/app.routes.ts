@@ -1,8 +1,9 @@
 import { Routes } from '@angular/router';
-import {LandingComponent} from "./landing/landing.component";
-import {QuestionsComponent} from "./questions/questions.component";
-import {BundeslandsComponent} from "./bundeslands/bundeslands.component";
-import {TestComponent} from "./test/test.component";
+import {LandingComponent} from "./components/landing/landing.component";
+import {QuestionsComponent} from "./components/questions/questions.component";
+import {BundeslandsComponent} from "./components/bundeslands/bundeslands.component";
+import {TestComponent} from "./components/test/test.component";
+import {StatisticsComponent} from "./components/statistics/statistics.component";
 
 export const routes: Routes = [
   {
@@ -20,6 +21,10 @@ export const routes: Routes = [
   {
     path: "test",
     component: TestComponent,
+  },
+  {
+    path: "statistics",
+    component: StatisticsComponent,
   },
 
 
