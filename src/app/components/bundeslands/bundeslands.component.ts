@@ -1,6 +1,7 @@
 import {Component, inject} from '@angular/core';
-import { DialogService, DialogRef, DialogCloseDirective } from '@ngneat/dialog';
+import { DialogRef, DialogCloseDirective } from '@ngneat/dialog';
 import {Data} from "@angular/router";
+import {FacadeService} from "../../store/facade.service";
 
 
 @Component({
@@ -12,10 +13,11 @@ import {Data} from "@angular/router";
 })
 export class BundeslandsComponent {
   ref: DialogRef<Data, boolean> = inject(DialogRef);
+  facadeService = inject(FacadeService);
 
 
-  onClick() {
 
+  selectBundesland(questionNumber: number) {
 
   }
 

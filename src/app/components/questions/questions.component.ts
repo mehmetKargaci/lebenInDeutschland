@@ -1,5 +1,6 @@
 import {Component, Inject, inject, OnInit} from '@angular/core';
-import {RavDataService} from "../../core/services/rav-data.service";
+import {SelectorService} from "../../store/selector.service";
+import {FacadeService} from "../../store/facade.service";
 
 @Component({
   selector: 'app-questions',
@@ -9,11 +10,12 @@ import {RavDataService} from "../../core/services/rav-data.service";
   styleUrl: './questions.component.css'
 })
 export class QuestionsComponent implements OnInit{
-  ravDataService = inject(RavDataService);
-  themas : string[]=[];
+  facadeService = inject(FacadeService);
 
 
   ngOnInit() {
+    console.log(this.facadeService.selectorService.correctAnswerIndex);
+
   }
 
 

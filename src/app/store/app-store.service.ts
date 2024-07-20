@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import {booklet} from "./booklet";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppStoreService {
 
-  constructor() { }
+  readonly booklet = booklet;
 }
