@@ -18,7 +18,9 @@ export class SelectorService {
 
   themesUniq = [...new Set(this.themes)];
 
-
+  allgemeineQuestions = () => {
+    return  this.appStore.booklet.filter(data => data.id < 301 );
+    }
 }
 
 

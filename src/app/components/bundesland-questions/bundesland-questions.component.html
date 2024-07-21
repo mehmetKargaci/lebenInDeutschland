@@ -4,8 +4,8 @@
     <h2 class="font-semibold text-2xl">Lernen Sie Alle Fragen</h2>
     <h2 class="font-semibold text-xl text-pink-700 ">{{bundeslandName}}</h2>
   </div >
-  <div class="flex flex-col justify-center items-start mt-20 ml-52 mb-8">
-    @for (data of allgemeineQuestions; track $index){
+  <div class="flex flex-col justify-start items-start mb-8">
+    @for (data of bundeslandQuestions; track $index){
       <div class="m-4 font-medium">
         <div class="flex flex-row justify-start items-start ">
           <h1 class="text-md text-fuchsia-500 font-medium">{{data.theme}}</h1>
@@ -134,3 +134,4 @@
     }
   </div>
 </div>
+

@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FacadeService} from "../../store/facade.service";
 import {LocalStorageService} from "../../core/services/local-storage.service";
 import {BundeslandNameService} from "../../core/services/bundesland-name.service";
@@ -6,13 +6,13 @@ import {BundeslandQuestionsService} from "../../core/services/bundesland-questio
 import {BookletModel} from "../../core/booklet-model";
 
 @Component({
-  selector: 'app-questions',
+  selector: 'app-bundesland-questions',
   standalone: true,
   imports: [],
-  templateUrl: './questions.component.html',
-  styleUrl: './questions.component.css'
+  templateUrl: './bundesland-questions.component.html',
+  styleUrl: './bundesland-questions.component.css'
 })
-export class QuestionsComponent implements OnInit{
+export class BundeslandQuestionsComponent {
   facadeService = inject(FacadeService);
   localStorage = inject(LocalStorageService);
   bundeslandID = localStorage.getItem('bundeslandID');
@@ -21,14 +21,6 @@ export class QuestionsComponent implements OnInit{
 
   bundeslandName = this.bundeslandNameService.getBundeslandName(this.bundeslandID);
   bundeslandQuestions = this.bundeslandQuestionService.getBundeslandQuestions(this.bundeslandID);
-  allgemeineQuestions= this.facadeService.selectorService.allgemeineQuestions();
+  questions: BookletModel[] | undefined = [];
 
-
-
-
-
-  ngOnInit() {
-    // console.log(this.bundeslandQuestions);
-  }
 }
-
