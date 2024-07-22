@@ -21,14 +21,22 @@ export class QuestionsComponent implements OnInit{
 
   bundeslandName = this.bundeslandNameService.getBundeslandName(this.bundeslandID);
   bundeslandQuestions = this.bundeslandQuestionService.getBundeslandQuestions(this.bundeslandID);
-  allgemeineQuestions= this.facadeService.selectorService.allgemeineQuestions();
-
-
+  allgemeineQuestions= this.facadeService.selectorService.commonQuestions();
+  allThemes= this.facadeService.selectorService.themes;
+  currentThemeIndex: number = 0;
 
 
 
   ngOnInit() {
-    // console.log(this.bundeslandQuestions);
+    console.log(this.allThemes);
+  }
+
+  previousThemeSelect() {
+
+  }
+
+  nextThemeSelect() {
+
   }
 }
 

@@ -9,18 +9,14 @@ export class SelectorService {
   bookletData = this.appStore.booklet;
 
   questions = this.bookletData.map((booklet) => booklet.question);
-  themes = this.bookletData.map((booklet) => booklet.theme);
-  answers = this.bookletData.map((booklet) => booklet.answers);
-  id  = this.bookletData.map((booklet) => booklet.id);
-  hasPhoto = this.bookletData.map((booklet) => booklet.hasPhoto);
-  correctAnswers = this.bookletData.map((booklet) => booklet.correctAnswer);
-  correctAnswerIndex = this.bookletData.map((booklet) => booklet.correctAnswerIndex);
+  allthemes = this.bookletData.map((booklet) => booklet.theme);
+  id = this.bookletData.map((booklet) => booklet.id);
 
-  themesUniq = [...new Set(this.themes)];
+  themes:string[] = [...new Set(this.allthemes)];
 
-  allgemeineQuestions = () => {
-    return  this.appStore.booklet.filter(data => data.id < 301 );
-    }
+  commonQuestions = () => {
+    return this.appStore.booklet.filter(data => data.id < 301);
+  }
 }
 
 

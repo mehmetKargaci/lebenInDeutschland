@@ -3,6 +3,7 @@ import {FacadeService} from "../../store/facade.service";
 import { BookletModel } from '../../core/booklet-model';
 import {FormArray, FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {CalculationService} from "../../core/services/calculation.service";
+import {UtilityService} from "../../core/services/utility.service";
 
 @Component({
   selector: 'app-test',
@@ -15,21 +16,17 @@ import {CalculationService} from "../../core/services/calculation.service";
 })
 export class TestComponent implements OnInit{
   facadeService = inject(FacadeService);
-  calculationService = inject(CalculationService);
+  utilityService = inject(UtilityService);
   allQuestions: BookletModel[] = [];
   examQuestions: BookletModel[] = [];
   currentQuestionIndex: number = 0;
   userAnswers: string[] = [];
-  answerControl= new FormArray([
-    new FormControl('', Validators.required),
-    new FormControl('', Validators.required),
-    new FormControl('', Validators.required),
-    new FormControl('', Validators.required),
-  ]);
+  answerControl = new FormControl();
   score: number | null = 0;
+  showAnswers: boolean = true;
 
   ngOnInit() {
-    this.allQuestions = this.facadeService.selectorService.allgemeineQuestions();
+    this.allQuestions = this.facadeService.selectorService.commonQuestions();
     this.generateRandomExam();
     this.initializeUserAnswers();
   }
@@ -70,7 +67,7 @@ export class TestComponent implements OnInit{
 
   submitExam() {
     // this.saveAnswer();
-    this.score = this.calculationService.findCorrectAnswers(this.examQuestions, this.userAnswers);
+    this.score = this.utilityService.calculationService.findCorrectAnswers(this.examQuestions, this.userAnswers);
     console.log(this.score);
   }
 }

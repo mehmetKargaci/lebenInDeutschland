@@ -15,135 +15,29 @@
 
   <div class=" flex flex-col justify-center mt-8 font-medium">
     <div class="flex flex-col justify-start items-start ">
-      <h1 class="text-md text-fuchsia-500 font-medium">Score: {{ score }}</h1>
       <h1 class="text-md text-fuchsia-500 font-medium">Progress: {{currentQuestionIndex +1}}/33</h1>
     </div >
     <div class="flex flex-col flex-start mt-8 ">
-      <h1> Frage-{{facadeService.selectorService.id[currentQuestionIndex]}}: {{examQuestions[currentQuestionIndex].question}}</h1>
+      <h1 class="text-lg"> Frage-{{facadeService.selectorService.id[currentQuestionIndex]}}: {{examQuestions[currentQuestionIndex].question}}</h1>
       @if(examQuestions[currentQuestionIndex].hasPhoto){
         <div class="flex justify-center items-center" >
           <img src="../../../assets/images/{{examQuestions[currentQuestionIndex].id}}.png" alt="image">
         </div>
       }
       <div
-        class="flex flex-col mt-8 "
-        formArrayName="answerControl">
-        <div class="inline-flex items-center">
-          <label
-            class="relative flex cursor-pointer items-center rounded-full p-3"
-            data-ripple-dark="true"
-          >
-            <input
-              type="checkbox"
-              class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-pink-500 checked:bg-pink-500 checked:before:bg-pink-500 hover:before:opacity-10"
-              formControlName="0"
-            />
-            <div class="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-3.5 w-3.5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                stroke="currentColor"
-                stroke-width="1"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </div>
-          </label>
-          <label class="mt-px cursor-pointer select-none font-normal text-gray-700">{{examQuestions[currentQuestionIndex].answers[0]}}</label>
-        </div>
-        <div class="inline-flex items-center">
-          <label
-            class="relative flex cursor-pointer items-center rounded-full p-3"
-            data-ripple-dark="true"
-          >
-            <input
-              type="checkbox"
-              class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-pink-500 checked:bg-pink-500 checked:before:bg-pink-500 hover:before:opacity-10"
-              formControlName="1"
-            />
-            <div class="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-3.5 w-3.5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                stroke="currentColor"
-                stroke-width="1"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </div>
-          </label>
-          <label class="mt-px cursor-pointer select-none font-normal text-gray-700">{{examQuestions[currentQuestionIndex].answers[1]}}</label>
-        </div>
-        <div class="inline-flex items-center">
-          <label
-            class="relative flex cursor-pointer items-center rounded-full p-3"
-            data-ripple-dark="true"
-          >
-            <input
-              type="checkbox"
-              class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-pink-500 checked:bg-pink-500 checked:before:bg-pink-500 hover:before:opacity-10"
-              formControlName="2"
-            />
-            <div class="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-3.5 w-3.5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                stroke="currentColor"
-                stroke-width="1"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </div>
-          </label>
-          <label class="mt-px cursor-pointer select-none font-normal text-gray-700">{{examQuestions[currentQuestionIndex].answers[2]}}</label>
-        </div>
-        <div class="inline-flex items-center">
-          <label
-            class="relative flex cursor-pointer items-center rounded-full p-3"
-            data-ripple-dark="true"
-          >
-            <input
-              type="checkbox"
-              class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-pink-500 checked:bg-pink-500 checked:before:bg-pink-500 hover:before:opacity-10"
-              formControlName="3"
-            />
-            <div class="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-3.5 w-3.5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                stroke="currentColor"
-                stroke-width="1"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </div>
-          </label>
-          <label class="mt-px cursor-pointer select-none font-normal text-gray-700">{{examQuestions[currentQuestionIndex].answers[3]}}</label>
-        </div>
+        class="flex flex-col mt-2"
+        formControlName="answerControl"
+        >
+        @if(showAnswers){
+          @for(answer of examQuestions[currentQuestionIndex].answers; track answer; let i = $index){
+            <label>
+              <input
+                class="mr-2 mt-4 w-4 h-4 text-blue-600 bg-gray-100 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" type="radio" id="answerChoice" name="answer" value="answer"
+              />
+              <label class="text-lg " for="answerChoice">{{answer}}</label>
+            </label>
+          }
+        }
       </div>
     </div>
   </div>
