@@ -45,29 +45,16 @@ export class TestComponent implements OnInit{
     console.log(this.answerControl.value);
     if (this.currentQuestionIndex < this.examQuestions.length - 1) {
       this.currentQuestionIndex++;
-      // this.loadAnswer();
     }
   }
 
   onBackClick(){
     if (this.currentQuestionIndex > 0) {
       this.currentQuestionIndex--;
-      // this.loadAnswer();
     }
   }
 
-  // saveAnswer() {
-  //   if (this.answerControl.value != null) {
-  //     this.userAnswers[this.currentQuestionIndex] = this.answerControl.value;
-  //   }
-  // }
-  //
-  // loadAnswer() {
-  //   this.answerControl.setValue(this.userAnswers[this.currentQuestionIndex]);
-  // }
-
   submitExam() {
-    // this.saveAnswer();
     this.score = this.utilityService.calculationService.findCorrectAnswers(this.examQuestions, this.userAnswers);
     console.log(this.score);
   }
