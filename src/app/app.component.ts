@@ -1,9 +1,11 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, input, OnInit, signal} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {HeaderComponent} from "./components/header/header.component";
 import {FooterComponent} from "./components/footer/footer.component";
 import { DialogService, DialogCloseDirective } from '@ngneat/dialog';
 import {BundeslandsComponent} from "./components/bundeslands/bundeslands.component";
+import {UtilityService} from "./core/services/utility.service";
+import {FacadeService} from "./store/facade.service";
 
 
 @Component({
@@ -15,9 +17,15 @@ import {BundeslandsComponent} from "./components/bundeslands/bundeslands.compone
 })
 export class AppComponent implements OnInit{
   private dialog = inject(DialogService);
+  utilityService = inject(UtilityService);
+  facadeService = inject(FacadeService);
 
   ngOnInit() {
-    const dialogRef = this.dialog.open(BundeslandsComponent, {})
+    const bundeslandID = this.utilityService.localStorageService.getItem('bundeslandID')
+    if (!bundeslandID) {
+      this.dialog.open(BundeslandsComponent, {})
+    } else {
+      this.facadeService.setBundeslandID(bundeslandID);
+    }
   }
-
 }

@@ -23,7 +23,7 @@
     </div>
   </div >
   <div class="flex flex-col justify-center items-start mt-20 ml-52 mb-8">
-    @for (data of allgemeineQuestions; track $index){
+    @for (data of selectedThemeQuestions; track $index){
       <div class="m-2 font-medium">
         <h1> Frage-{{data.id}}: {{data.question}}</h1>
       </div>

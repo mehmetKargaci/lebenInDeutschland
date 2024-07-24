@@ -1,15 +1,16 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {FacadeService} from "../../store/facade.service";
 import { BookletModel } from '../../core/booklet-model';
-import {FormArray, FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
-import {CalculationService} from "../../core/services/calculation.service";
+import { FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {UtilityService} from "../../core/services/utility.service";
+import {NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-test',
   standalone: true,
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgForOf
   ],
   templateUrl: './test.component.html',
   styleUrl: './test.component.css'

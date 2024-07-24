@@ -6,10 +6,11 @@ import {AppStoreService} from "./app-store.service";
 })
 export class ReducerService implements OnInit {
   appStore = inject(AppStoreService);
-  bookletData = this.appStore.booklet;
 
   ngOnInit() {
   }
 
-
+  setBundeslandId(bundeslandID: string) {
+  this.appStore.bundeslandId.set(bundeslandID);
+  }
 }

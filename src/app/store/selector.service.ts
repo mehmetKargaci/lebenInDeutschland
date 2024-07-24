@@ -11,12 +11,13 @@ export class SelectorService {
   questions = this.bookletData.map((booklet) => booklet.question);
   allthemes = this.bookletData.map((booklet) => booklet.theme);
   id = this.bookletData.map((booklet) => booklet.id);
-
   themes:string[] = [...new Set(this.allthemes)];
+  bundeslandID = this.appStore.bundeslandId.asReadonly();
 
   commonQuestions = () => {
     return this.appStore.booklet.filter(data => data.id < 301);
   }
+
 }
 
 

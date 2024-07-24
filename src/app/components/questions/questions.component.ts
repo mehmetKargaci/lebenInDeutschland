@@ -14,16 +14,10 @@ import {BookletModel} from "../../core/booklet-model";
 })
 export class QuestionsComponent implements OnInit{
   facadeService = inject(FacadeService);
-  localStorage = inject(LocalStorageService);
-  bundeslandID = localStorage.getItem('bundeslandID');
-  bundeslandNameService= inject(BundeslandNameService);
-  bundeslandQuestionService =inject(BundeslandQuestionsService);
 
-  bundeslandName = this.bundeslandNameService.getBundeslandName(this.bundeslandID);
-  bundeslandQuestions = this.bundeslandQuestionService.getBundeslandQuestions(this.bundeslandID);
-  allgemeineQuestions= this.facadeService.selectorService.commonQuestions();
   allThemes= this.facadeService.selectorService.themes;
   currentThemeIndex: number = 0;
+  selectedThemeQuestions = this.facadeService.selectorService.bookletData.filter(data => +data.id < 311 && data.id > 300);
 
 
 

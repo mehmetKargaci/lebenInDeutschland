@@ -9,5 +9,12 @@ export class FacadeService {
   selectorService = inject(SelectorService);
   reducerService = inject(ReducerService);
 
+  setBundeslandID(bundeslandID: string) {
+    this.reducerService.setBundeslandId(bundeslandID);
+  }
+
+  bundeslandID() {
+   return this.selectorService.bundeslandID;
+  }
 }
 

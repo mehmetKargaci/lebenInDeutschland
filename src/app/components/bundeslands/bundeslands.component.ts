@@ -14,13 +14,11 @@ import {LocalStorageService} from "../../core/services/local-storage.service";
 })
 export class BundeslandsComponent {
   ref: DialogRef<Data, boolean> = inject(DialogRef);
-  facadeService = inject(FacadeService);
   localStorage = inject(LocalStorageService);
-  selectedBundesland = '0';
+  selectedBundesland = '';
 
   selectBundesland(selectedBundesland: string) {
     this.selectedBundesland = selectedBundesland;
     this.localStorage.setItem('bundeslandID', this.selectedBundesland);
   }
-
 }
