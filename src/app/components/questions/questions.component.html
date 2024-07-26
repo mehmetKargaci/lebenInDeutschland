@@ -1,36 +1,38 @@
 
 <div class="flex flex-col mt-20 justify-center items-center z-20 mb-28">
   <div class="flex flex-row gap-2 justify-center items-center">
-    <div class="flex flex-row border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-200" >
+    <div class="flex flex-row border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-100" >
       <label class="flex flex-row">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18">
         </path>
       </svg>
-      <button class="font-bold text-lg" (click)="onBackTheme()" >{{allThemes[currentThemeIndex]}}</button>
+      <button class="font-bold text-lg" (click)="onBackTheme(allThemes[currentThemeIndex])" >{{allThemes[currentThemeIndex]}}</button>
       </label>
-
-
     </div>
-    <div class="flex flex-col gap-2 border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-200" >
-      <button class="ml-1 font-bold text-lg">{{allThemes[currentThemeIndex +1]}}</button>
+    <div class="flex flex-col gap-2 border border-indigo-300 text-pink-800 px-3 py-1.5 rounded-md bg-indigo-300" >
+      <button class="ml-1 font-bold text-lg " (click)="onMiddleTheme(allThemes[currentThemeIndex +1])">{{allThemes[currentThemeIndex +1]}}</button>
     </div>
-    <div class="flex flex-row gap-2 border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-200" >
+    <div class="flex flex-row gap-2 border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-100" >
       <label class="flex flex-row">
-        <button class="ml-1 font-bold text-lg" (click)="onNextTheme()" >{{allThemes[currentThemeIndex + 2]}}</button>
+        <button class="ml-1 font-bold text-lg" (click)="onNextTheme(allThemes[currentThemeIndex + 2])" >{{allThemes[currentThemeIndex + 2]}}</button>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3">
         </path>
       </svg>
-
       </label>
-
     </div>
   </div >
-  <div class="flex flex-col justify-center items-start mt-20 mb-8">
+  <div class="inline-flex items-center mt-8">
+    <div >
+      <h2 class="font-semibold text-2xl">Theme: {{showTheme}}</h2>
+    </div>
+  </div>
+
+  <div class="flex flex-col justify-center items-start mt-10 mb-8 px-14">
     @for (data of selectedThemeQuestions; track data; let i = $index){
-      <div class="m-2 font-medium">
-        <h1> Frage-{{data.id}}: {{data.question}}</h1>
+      <div class="m-2 font-medium mt-8">
+        <h1> Frage-{{i +1}}: {{data.question}}</h1>
       </div>
       @if(data.hasPhoto){
         <div class="flex justify-center items-center" >
@@ -41,15 +43,16 @@
         *ngFor="let answer of data.answers ; let i = index">
         <div class="inline-flex items-center">
           <span
-            class="relative flex cursor-pointer items-center rounded-full p-3"
+            class="relative flex cursor-pointer items-center rounded-full p-1.5"
             data-ripple-dark="true"
           >
             <input
               type="radio"
-              class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-pink-500 checked:bg-pink-500 checked:before:bg-pink-500 hover:before:opacity-10"
+              class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-gray-400 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-pink-500 checked:bg-pink-500 checked:before:bg-pink-500 hover:before:opacity-10"
               name="options"
               [id]="'option'+i"
-              [value]="answer"
+              [value]="answer + i"
+              [checked]="data.correctAnswerIndex"
 
             />
             <div class="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100">
@@ -71,7 +74,6 @@
           </span>
           <label class="mt-px cursor-pointer select-none font-normal text-gray-700" [for]="'option'+i">{{answer}}</label>
         </div>
-
       </div>
     }
   </div>

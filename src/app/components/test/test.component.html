@@ -1,6 +1,6 @@
 <div class="flex flex-col mt-20 justify-center items-center z-20 m-4 mb-28">
   <div class="flex items-end">
-    <a href="#"
+    <a routerLink="/exam-amalysis"
        class="flex items-end border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-200">
       <button class="mr-1 font-bold text-lg text-rose-700" (click)="submitExam()">Test Beenden</button>
     </a>
@@ -33,14 +33,13 @@
               <input
                 class="mr-2 mt-4 w-4 h-4 focus:outline-none focus:ring-2 focus:rounded focus:ring-blue-500"
                 type="radio"
-                [id]="'answer' + i"
-                [value]="answer"
+                [id]="currentQuestionIndex + 'answer' + i"
+                [value]="i"
                 [formControl]="answerControl"
               />
-              <label class="text-lg " [for]="'answer' + i">{{answer}}</label>
+              <label class="text-lg " [for]="currentQuestionIndex + 'answer' + i">{{answer}}</label>
             </span>
           </div>
-
         }
       </div>
     </div>
@@ -65,5 +64,4 @@
       </label>
     </div>
   </div>
-
 </div>

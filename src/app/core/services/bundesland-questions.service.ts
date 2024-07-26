@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {FacadeService} from "../../store/facade.service";
-import {BookletModel} from "../booklet-model";
+import {Question} from "../question";
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ import {BookletModel} from "../booklet-model";
 export class BundeslandQuestionsService {
   facadeService = inject(FacadeService);
 
-  getBundeslandQuestions(bundeslandID:string | null):BookletModel[] {
+  getBundeslandQuestions(bundeslandID:string | null):Question[] {
     switch (bundeslandID) {
       case '1'://bandenwurtemberg
         return this.facadeService.selectorService.bookletData.filter(data => +data.id < 311 && data.id > 300);

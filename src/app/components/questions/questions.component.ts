@@ -17,23 +17,32 @@ export class QuestionsComponent implements OnInit{
   allThemes= this.facadeService.selectorService.themes;
 
   currentThemeIndex: number = 0;
-  selectedThemeQuestions = this.facadeService.selectorService.bookletData.filter(data => +data.id < 311 && data.id > 300);
+  selectedThemeQuestions = this.facadeService.selectorService.bookletData;
+  showTheme = "Verfassungsprinzipien";
 
 
   ngOnInit() {
-    console.log(this.allThemes);
+    this.selectedThemeQuestions = this.facadeService.selectorService.bookletData.filter(data => data.theme === "Verfassungsprinzipien");
   }
-  onNextTheme() {
-    if (this.currentThemeIndex < this.allThemes.length - 1) {
-      this.currentThemeIndex++;
-      // this.loadAnswer();
+
+  onBackTheme(theme: string){
+    if (this.currentThemeIndex >= 0) {
+      this.currentThemeIndex--;
+      this.selectedThemeQuestions = this.facadeService.selectorService.bookletData.filter(data => data.theme === theme );
+      this.showTheme = theme;
     }
   }
 
-  onBackTheme(){
-    if (this.currentThemeIndex > 0) {
-      this.currentThemeIndex--;
-      // this.loadAnswer();
+  onMiddleTheme(theme: string) {
+    this.selectedThemeQuestions = this.facadeService.selectorService.bookletData.filter(data => data.theme === theme );
+    this.showTheme = theme;
+  }
+
+  onNextTheme(theme: string) {
+    if (this.currentThemeIndex < this.allThemes.length - 1) {
+      this.currentThemeIndex++;
+      this.selectedThemeQuestions = this.facadeService.selectorService.bookletData.filter(data => data.theme === theme );
+      this.showTheme = theme;
     }
   }
 }

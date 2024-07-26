@@ -3,7 +3,7 @@ import {FacadeService} from "../../store/facade.service";
 import {LocalStorageService} from "../../core/services/local-storage.service";
 import {BundeslandNameService} from "../../core/services/bundesland-name.service";
 import {BundeslandQuestionsService} from "../../core/services/bundesland-questions.service";
-import {BookletModel} from "../../core/booklet-model";
+import {Question} from "../../core/question";
 
 @Component({
   selector: 'app-bundesland-questions',
@@ -21,6 +21,6 @@ export class BundeslandQuestionsComponent {
 
   bundeslandName = this.bundeslandNameService.getBundeslandName(this.bundeslandID);
   bundeslandQuestions = this.bundeslandQuestionService.getBundeslandQuestions(this.bundeslandID);
-  questions: BookletModel[] | undefined = [];
+  questions: Question[] | undefined = [];
 
 }

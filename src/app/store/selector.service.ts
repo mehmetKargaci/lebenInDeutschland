@@ -17,6 +17,7 @@ export class SelectorService {
   commonQuestions = () => {
     return this.appStore.booklet.filter(data => data.id < 301);
   }
+  exam = this.appStore.test.asReadonly();
 
 }
 

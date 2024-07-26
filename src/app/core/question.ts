@@ -1,5 +1,5 @@
 
-export class BookletModel {
+export class Question {
   question: string ='';
   answers: string[] = [];
   hasPhoto: boolean = false;
