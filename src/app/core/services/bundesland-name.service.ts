@@ -4,8 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class BundeslandNameService {
-
-  constructor() { }
   getBundeslandName(bundeslandID: string | null): string {
     switch (bundeslandID) {
       case '1':

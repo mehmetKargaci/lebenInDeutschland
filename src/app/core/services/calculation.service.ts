@@ -1,21 +1,38 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Question} from "../question";
+import {FacadeService} from "../../store/facade.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CalculationService {
+  facadeService = inject(FacadeService);
+  exam  = this.facadeService.selectorService.exam();
 
-  constructor() {
-  }
 
-  findCorrectAnswers(questions: Question[], userAnswers: string[]): number {
+
+  findCorrectAnswers(exam: {userAnswer: number, question:Question}[]) {
     let correctCount = 0;
-    questions.forEach((question, index) => {
-      if (question.correctAnswer === userAnswers[index]) {
+    let wrongCount = 0;
+    let nullCount = 0;
+    exam.forEach((e)=> {
+      if (e.userAnswer === null) {
+        nullCount++;
+      } else if (e.userAnswer === e.question.correctAnswerIndex) {
         correctCount++;
+      } else {
+        wrongCount++;
       }
+      return correctCount;
     });
-    return correctCount;
-  }
+    }
+
 }
+
+// let correctCount = 0;
+// questions.forEach((question, index) => {
+//   if (question.correctAnswer === userAnswers[index]) {
+//     correctCount++;
+//   }
+// });
+// return correctCount;

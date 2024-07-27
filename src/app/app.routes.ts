@@ -5,7 +5,6 @@ import {BundeslandsComponent} from "./components/bundeslands/bundeslands.compone
 import {TestComponent} from "./components/test/test.component";
 import {StatisticsComponent} from "./components/statistics/statistics.component";
 import {ExamAnalysisComponent} from "./components/exam-analysis/exam-analysis.component";
-import {BundeslandQuestionsComponent} from "./components/bundesland-questions/bundesland-questions.component";
 
 export const routes: Routes = [
   {
@@ -17,10 +16,6 @@ export const routes: Routes = [
     component: QuestionsComponent,
   },
   {
-    path: "bundesland-questions",
-    component: BundeslandQuestionsComponent,
-  },
-  {
     path: "bundeslands",
     component: BundeslandsComponent,
   },
@@ -29,7 +24,7 @@ export const routes: Routes = [
     component: TestComponent,
   },
   {
-    path: "exam-amalysis",
+    path: "exam-analysis",
     component: ExamAnalysisComponent,
   },
   {

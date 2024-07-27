@@ -1,11 +1,11 @@
 import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {FacadeService} from "../../store/facade.service";
 import { Question } from '../../core/question';
-import { FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
-import {UtilityService} from "../../core/services/utility.service";
+import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import {NgForOf} from "@angular/common";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {RouterLink} from "@angular/router";
+import {UtilityService} from "../../core/services/utility.service";
 
 
 @Component({
@@ -23,36 +23,36 @@ export class TestComponent implements OnInit{
   facadeService = inject(FacadeService);
   utilityService = inject(UtilityService);
   destroyRef = inject(DestroyRef);
-  allQuestions: Question[] = [];
+  commonQuestions: Question[] = [];
   examQuestions: Question[] = [];
   currentQuestionIndex: number = 0;
-  userAnswers: number[] = [];
   answerControl = new FormControl();
-  score: number | null = 0;
   showAnswers: boolean = true;
+  bundeslandID = this.facadeService.selectorService.appStore.bundeslandId.asReadonly();
+
+  selectedBundeslandQuestions = () => {
+    return this.utilityService.bundeslandQuestionsService.getBundeslandQuestions(this.bundeslandID());
+  }
 
 
   ngOnInit() {
-    this.allQuestions = this.facadeService.selectorService.commonQuestions();
+    this.commonQuestions = this.facadeService.selectorService.commonQuestions();
+
     this.generateRandomExam();
-    this.initializeUserAnswers();
     this.answerControl.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(answer => {
       if (answer != null) {
         this.facadeService.updateExam(parseInt(answer), this.currentQuestionIndex);
       }
-      console.log(answer, this.currentQuestionIndex);
-
     })
-    // console.log(this.answerControl.value);
-  }
-
-  initializeUserAnswers() {
-    this.userAnswers = new Array(this.examQuestions.length).fill('');
   }
 
   generateRandomExam() {
-    const shuffled = [...this.allQuestions].sort(() => 0.5 - Math.random());
-    this.examQuestions = shuffled.slice(0, 33);
+    const shuffled = [...this.commonQuestions].sort(() => 0.5 - Math.random());
+    this.examQuestions = shuffled.slice(0, 30);
+    const bundeslandQuestions = this.selectedBundeslandQuestions();
+    const shuffledBundeslandQuestions = [...bundeslandQuestions].sort(() => 0.5 - Math.random()).slice(0,3);
+    this.examQuestions = this.examQuestions.concat(shuffledBundeslandQuestions);
+
     const exam : {userAnswer: number, question:Question}[] = [];
     this.examQuestions.forEach(question => {
       exam.push({userAnswer: -1, question: question});

@@ -1,4 +1,4 @@
-import {inject, Injectable, OnInit} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {AppStoreService} from "./app-store.service";
 import {Question} from "../core/question";
 
@@ -16,12 +16,14 @@ export class ReducerService {
    this.appStore.test.set(exam);
   }
 
-  updateExam(answer: number, currentQuestionIndex: number) {
-    this.appStore.test.update(test => {
-      return test.map((e,index) => ({
+  updateExam(answer: number , currentQuestionIndex: number) {
+    this.appStore.test.update((testElement => {
+      return testElement.map((e, index) => ({
         ...e,
         userAnswer: index === currentQuestionIndex ? answer : e.userAnswer
       }))
-    })
+    }))
   }
 }
+
+
