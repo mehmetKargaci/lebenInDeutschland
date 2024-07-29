@@ -5,6 +5,8 @@ import {BundeslandsComponent} from "./components/bundeslands/bundeslands.compone
 import {TestComponent} from "./components/test/test.component";
 import {StatisticsComponent} from "./components/statistics/statistics.component";
 import {ExamAnalysisComponent} from "./components/exam-analysis/exam-analysis.component";
+import {TrainingComponent} from "./components/training/training.component";
+import {TrainingMenuComponent} from "./components/training-menu/training-menu.component";
 
 export const routes: Routes = [
   {
@@ -22,6 +24,14 @@ export const routes: Routes = [
   {
     path: "test",
     component: TestComponent,
+  },
+  {
+    path: "training",
+    component: TrainingComponent,
+  },
+  {
+    path: "training-menu",
+    component: TrainingMenuComponent,
   },
   {
     path: "exam-analysis",

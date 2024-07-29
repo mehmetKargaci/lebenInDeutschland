@@ -35,8 +35,6 @@ export class QuestionsComponent implements OnInit{
     this.selectedThemeQuestions = this.facadeService.selectorService.bookletData.filter(data => data.theme === "Verfassungsprinzipien");
     this.themes = this.allthemes.slice(0,20);
     this.themes.push(this.selectedBundeslandName());
-    console.log(this.allthemes)
-    console.log(this.themes);
   }
 
   onBackTheme(theme: string){

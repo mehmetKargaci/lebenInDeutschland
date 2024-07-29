@@ -14,7 +14,7 @@
         </div>
       }
       <div class="flex flex-col"
-           *ngFor="let answer of data.answers ; let i = index">
+           *ngFor="let answer of data.answers ; let j = index">
         <div class="inline-flex items-center">
           <span
             class="relative flex cursor-pointer items-center rounded-full p-1.5"
@@ -23,10 +23,11 @@
             <input
               type="radio"
               class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-gray-400 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-pink-500 checked:bg-pink-500 checked:before:bg-pink-500 hover:before:opacity-10"
-              name="options"
-              [id]="'option'+i"
-              [value]="answer + i"
-              [checked]="i === data.correctAnswerIndex"
+              [id]="'option'+j"
+              [name]="'answer' + data.id"
+              [value]="answer + j"
+              [checked]="userAnswers[i] !==- 1 && j === data.correctAnswerIndex"
+              disabled
 
             />
             <div class="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100">
@@ -46,10 +47,15 @@
               </svg>
             </div>
           </span>
-          <label class="mt-px cursor-pointer select-none font-normal text-gray-700" [for]="'option'+i">{{answer}}</label>
+          <label
+            class="mt-px cursor-pointer select-none font-normal text-gray-700" [for]="'option'+j"
+            [ngClass]="{
+            'bg-green-100': userAnswers[i] === j && j === data.correctAnswerIndex,
+            'bg-red-100': userAnswers[i] === j && j !== data.correctAnswerIndex,
+             'bg-yellow-100': userAnswers[i] === -1 && j === data.correctAnswerIndex}"
+            >{{answer}}</label>
         </div>
       </div>
-
   </div>
 </div>
 

@@ -1,0 +1,74 @@
+<div class="flex flex-row justify-center mt-20">
+  <div >
+    <h2 class="font-semibold text-2xl">{{ examQuestions[currentQuestionIndex].theme }}</h2>
+  </div>
+</div>
+
+<div class=" flex flex-col justify-center items-start ml-24 font-medium">
+  <div class="flex flex-col justify-center items-start ">
+    <h1 class="text-md text-fuchsia-500 font-medium">Progress: {{currentQuestionIndex +1}}/{{15}}</h1>
+  </div >
+  <div class="flex flex-col flex-start mt-8 ">
+    <h1 class="text-lg"> Frage-{{facadeService.selectorService.id[currentQuestionIndex]}}: {{examQuestions[currentQuestionIndex].question}}</h1>
+    @if(examQuestions[currentQuestionIndex].hasPhoto){
+      <div class="flex justify-center items-center" >
+        <img src="../../../assets/images/{{examQuestions[currentQuestionIndex].id}}.png" alt="image">
+      </div>
+    }
+    <div
+      class="flex flex-col mt-2"
+    >
+      @if(showAnswers){
+        <div *ngFor="let answer of examQuestions[currentQuestionIndex].answers ; let i = index">
+          <div class="inline-flex items-center">
+          <span
+            class="relative flex cursor-pointer items-center rounded-full p-1.5"
+            data-ripple-dark="true"
+          >
+            <input
+              type="radio"
+              class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-gray-400 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-pink-500 checked:bg-pink-500 checked:before:bg-pink-500 hover:before:opacity-10"
+              name="options"
+              [id]="'option'+i"
+              [name]="'answer'+ i"
+              [value]="i"
+              [formControl]="answerControl"
+
+
+            />
+            <div class="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-3.5 w-3.5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                stroke="currentColor"
+                stroke-width="1"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </div>
+          </span>
+            <label class="mt-px cursor-pointer select-none font-normal text-gray-700" [for]="'option'+i">{{answer}}</label>
+          </div>
+
+        </div>
+      }
+    </div>
+  </div>
+</div>
+<div class="inline-flex items-center justify-center px-3 py-1.5 text-indigo-500 gap-2 mt-8 ml-20">
+  <div class="inline-flex items-stretch px-3 py-1.5 text-indigo-500 ">
+    <label class="flex flex-row focus:outline-black text-white rounded-lg text-sm py-2.5 px-4 border-b-4 border-gray-600 bg-gray-500 hover:bg-gray-400 hover:text-orange-700">
+      <button class="mr-1 font-bold text-lg rounded-lg" (click)="onNextClick()" [disabled]="currentQuestionIndex === examQuestions.length - 1">Nächste</button>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3">
+        </path>
+      </svg>
+    </label>
+  </div>
+</div>

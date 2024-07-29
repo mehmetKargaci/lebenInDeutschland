@@ -1,25 +1,26 @@
-import {Component, DestroyRef, inject, OnInit} from '@angular/core';
-import {FacadeService} from "../../store/facade.service";
-import { Question } from '../../core/question';
-import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import {NgForOf} from "@angular/common";
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {Component, DestroyRef, inject} from '@angular/core';
+import {NgForOf, NgIf} from "@angular/common";
 import {RouterLink} from "@angular/router";
+import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FacadeService} from "../../store/facade.service";
 import {UtilityService} from "../../core/services/utility.service";
-
+import {Question} from "../../core/question";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
-  selector: 'app-test',
+  selector: 'app-training',
   standalone: true,
   imports: [
-    ReactiveFormsModule,
+    NgIf,
+    RouterLink,
+    FormsModule,
     NgForOf,
-    RouterLink
+    ReactiveFormsModule
   ],
-  templateUrl: './test.component.html',
-  styleUrl: './test.component.css'
+  templateUrl: './training.component.html',
+  styleUrl: './training.component.css'
 })
-export class TestComponent implements OnInit{
+export class TrainingComponent {
   facadeService = inject(FacadeService);
   utilityService = inject(UtilityService);
   destroyRef = inject(DestroyRef);
@@ -64,17 +65,6 @@ export class TestComponent implements OnInit{
     if (this.currentQuestionIndex < this.examQuestions.length - 1) {
       this.currentQuestionIndex++;
     }
-  }
-
-  onBackClick(){
-    if (this.currentQuestionIndex > 0) {
-      this.currentQuestionIndex--;
-    }
-  }
-
-  submitExam() {
-    const test = this.facadeService.getExam();
-    console.log(test);
   }
 
 }

@@ -3,6 +3,7 @@ import {FacadeService} from "../../store/facade.service";
 import {RouterLink} from "@angular/router";
 import {UtilityService} from "../../core/services/utility.service";
 import {Question} from "../../core/question";
+import {NgIf} from "@angular/common";
 
 
 
@@ -10,7 +11,8 @@ import {Question} from "../../core/question";
   selector: 'app-statistics',
   standalone: true,
   imports: [
-    RouterLink
+    RouterLink,
+    NgIf
   ],
   templateUrl: './statistics.component.html',
 
@@ -19,6 +21,7 @@ export class StatisticsComponent implements OnInit {
   utilityService = inject(UtilityService);
   facadeService = inject(FacadeService);
 
+  result= false;
   correctCount = 0;
   wrongCount = 0;
   nullCount = 0;
@@ -32,7 +35,9 @@ export class StatisticsComponent implements OnInit {
         } else {
         this.wrongCount++
         }
-      })
+      if(this.correctCount >= 17){
+        this.result = true;
+      }
+      });
     }
-
 }

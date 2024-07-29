@@ -2,5 +2,18 @@
   <div class="text-white font-semibold">
     <p>Leben In Deutschland Test</p>
   </div>
-  <div class="text-white" ><button>Settings</button></div>
+  <div class="flex flex-row justify-between items-end gap-2 ">
+    <a routerLink="/questions" routerLinkActive="text-white">
+      <div class="text-white"  ><button class="border border-gray-500 bg-gray-600 text-white rounded-lg p-1" routerLinkActive="bg-gray-400">Allgemeine Fragen</button></div>
+    </a>
+    <a routerLink="/training-menu" routerLinkActive="text-white" >
+      <div class="text-white"  ><button class="border border-gray-500 bg-gray-600 rounded-lg p-1" routerLinkActive="bg-gray-400">Trainieren Sie</button></div>
+    </a>
+    <a routerLink="/test" routerLinkActive="text-white">
+      <div class="text-white"  ><button class="border border-gray-500 bg-gray-600 rounded-lg p-1" routerLinkActive="bg-gray-400"> Probeprufüng</button></div>
+    </a>
+    <a>
+      <div class="text-white p-1 " ><button>Settings</button></div>
+    </a>
+  </div>
 </div>
