@@ -43,7 +43,8 @@ export class TestComponent implements OnInit{
       if (answer != null) {
         this.facadeService.updateExam(parseInt(answer), this.currentQuestionIndex);
       }
-    })
+    });
+
   }
 
   generateRandomExam() {
@@ -56,7 +57,7 @@ export class TestComponent implements OnInit{
     const exam : {userAnswer: number, question:Question}[] = [];
     this.examQuestions.forEach(question => {
       exam.push({userAnswer: -1, question: question});
-    })
+    });
     this.facadeService.setExam(exam);
   }
 
@@ -74,6 +75,7 @@ export class TestComponent implements OnInit{
 
   submitExam() {
     const test = this.facadeService.getExam();
-    console.log(test());
+    console.log(test);
   }
+
 }

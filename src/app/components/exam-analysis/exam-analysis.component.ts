@@ -13,8 +13,10 @@ import {FacadeService} from "../../store/facade.service";
 })
 export class ExamAnalysisComponent implements OnInit{
   facadeService = inject(FacadeService);
+  testQuestions = this.facadeService.getExam().map(answered => answered.question);
 
-  allThemes= this.facadeService.selectorService.themes;
+
+
 
   currentThemeIndex: number = 0;
   selectedThemeQuestions = this.facadeService.selectorService.bookletData;
@@ -22,6 +24,8 @@ export class ExamAnalysisComponent implements OnInit{
 
 
   ngOnInit() {
+
+    console.log(this.testQuestions);
     this.selectedThemeQuestions = this.facadeService.selectorService.bookletData.filter(data => data.theme === "Verfassungsprinzipien");
   }
 

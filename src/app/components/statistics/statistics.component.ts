@@ -13,7 +13,7 @@ import {Question} from "../../core/question";
     RouterLink
   ],
   templateUrl: './statistics.component.html',
-  styleUrl: './statistics.component.css'
+
 })
 export class StatisticsComponent implements OnInit {
   utilityService = inject(UtilityService);

@@ -1,14 +1,10 @@
 
-<div class="flex flex-col mt-20 justify-center items-center z-20 mb-28">
-
-  <div class="inline-flex items-center mt-8">
-    <div >
-      <h2 class="font-semibold text-2xl">Theme: {{showTheme}}</h2>
-    </div>
-  </div>
-
-  <div class="flex flex-col justify-center items-start mt-10 mb-8 px-14">
-    @for (data of selectedThemeQuestions; track data; let i = $index){
+<div class="flex flex-col justify-center items-center mt-20">
+  <h2 class="text-xl font-semibold">Probeprüfung Fragen</h2>
+</div>
+<div class="flex flex-col mt-2 justify-start items-start z-20 mb-28">
+  <div class="flex flex-col justify-center items-start mt-1 mb-2 px-14"
+    *ngFor="let data of testQuestions; let i = index">
       <div class="m-2 font-medium mt-8">
         <h1> Frage-{{i +1}}: {{data.question}}</h1>
       </div>
@@ -30,7 +26,7 @@
               name="options"
               [id]="'option'+i"
               [value]="answer + i"
-              [checked]="data.correctAnswerIndex"
+              [checked]="i === data.correctAnswerIndex"
 
             />
             <div class="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100">
@@ -53,7 +49,7 @@
           <label class="mt-px cursor-pointer select-none font-normal text-gray-700" [for]="'option'+i">{{answer}}</label>
         </div>
       </div>
-    }
+
   </div>
 </div>
 

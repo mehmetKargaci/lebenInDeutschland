@@ -27,7 +27,7 @@ export class FacadeService {
   }
 
   getExam() {
-    return this.selectorService.exam;
+    return this.selectorService.exam();
   }
 }
 
