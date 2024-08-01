@@ -24,6 +24,10 @@ export class ReducerService {
       }))
     }))
   }
+
+  setTheme(theme: string) {
+    this.appStore.trainingTheme.set(theme);
+  }
 }
 
 

@@ -1,4 +1,4 @@
-<div class="flex flex-col mt-20 justify-center ml-32 z-20 m-4 mb-28">
+<div class="flex flex-col mt-24 justify-center ml-32 z-20 m-4 mb-28">
   <div class="flex flex-row justify-center ">
     <a routerLink="/statistics">
       <button class="focus:outline-black text-white text-lg py-2.5 px-4 border-b-4 border-red-700 bg-red-500 hover:bg-red-400 rounded-lg" (click)="submitExam()">Test Beenden</button>
@@ -11,11 +11,11 @@
     </div>
   </div>
 
-  <div class=" mt-8 items-start font-medium">
+  <div class=" mt-4 items-start font-medium">
     <div class="flex flex-col justify-center items-start ">
       <h1 class="text-md text-fuchsia-500 font-medium">Progress: {{currentQuestionIndex +1}}/33</h1>
     </div >
-    <div class="flex flex-col flex-start mt-8 ">
+    <div class="flex flex-col flex-center mt-4 ">
       <h1 class="text-lg"> Frage-{{facadeService.selectorService.id[currentQuestionIndex]}}: {{examQuestions[currentQuestionIndex].question}}</h1>
       @if(examQuestions[currentQuestionIndex].hasPhoto){
         <div class="flex justify-center items-center" >

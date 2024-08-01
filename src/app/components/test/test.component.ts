@@ -61,12 +61,14 @@ export class TestComponent implements OnInit{
   }
 
   onNextClick() {
+    this.answerControl.setValue(null);
     if (this.currentQuestionIndex < this.examQuestions.length - 1) {
       this.currentQuestionIndex++;
     }
   }
 
   onBackClick(){
+    this.answerControl.setValue(null);
     if (this.currentQuestionIndex > 0) {
       this.currentQuestionIndex--;
     }

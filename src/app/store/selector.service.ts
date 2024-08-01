@@ -20,6 +20,9 @@ export class SelectorService {
     return this.appStore.booklet.filter(data => data.id < 301);
   }
 
+  trainingTheme() {
+    return this.appStore.trainingTheme();
+  }
 }
 
 

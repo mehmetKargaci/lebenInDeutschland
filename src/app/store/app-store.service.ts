@@ -9,4 +9,6 @@ export class AppStoreService {
   readonly booklet = booklet;
   bundeslandId = signal('');
   test= signal<{userAnswer: number, question:Question}[]>([]);
+  trainingTheme = signal('');
+
 }

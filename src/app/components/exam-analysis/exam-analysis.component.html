@@ -51,7 +51,8 @@
             class="mt-px cursor-pointer select-none font-normal text-gray-700" [for]="'option'+j"
             [ngClass]="{
             'bg-green-100': userAnswers[i] === j && j === data.correctAnswerIndex,
-            'bg-red-100': userAnswers[i] === j && j !== data.correctAnswerIndex,
+            'bg-green-200': j === data.correctAnswerIndex,
+            'bg-red-300': userAnswers[i] === j && j !== data.correctAnswerIndex,
              'bg-yellow-100': userAnswers[i] === -1 && j === data.correctAnswerIndex}"
             >{{answer}}</label>
         </div>

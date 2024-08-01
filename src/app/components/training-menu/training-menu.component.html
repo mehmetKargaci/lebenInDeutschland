@@ -3,64 +3,19 @@
     <h2 class="pl-24 text-fuchsia-700 text-3xl font-bold mb-4">TRAINIEREN SIE ALLE THEMEN </h2>
 
     <div class="flex flex-col gap-6 max-w-xl p-10 pt-1 mt-2">
-      <div *ngFor="let theme of themes; index as i">
+      <div *ngFor="let theme of themes; let i = index">
         <a routerLink="/training" (click)="onThemeSelect(theme)">
-          <span class="text-2xl font-bold">{{theme}} 10%</span>
+          <span class="text-2xl font-bold">{{theme}} 4/{{selectedThemeQustions().length}}</span>
           <div class="relative">
             <div class="w-full bg-gray-200 rounded-sm h-8">
-              <div
-                class="bg-red-500 h-full rounded-sm"
-                [ngClass]="{
-                'bg-red-500':themeProgress[i].progress < 25,
-                 'bg-amber-300':themeProgress[i].progress > 25 && themeProgress[i].progress < 50,
-                'bg-orange-500':themeProgress[i].progress > 50 && themeProgress[i].progress < 75,
-                 'bg-green-500':themeProgress[i].progress > 75}"
-                [style.width] ="themeProgress[i].progress + '%' "></div>
+              <div class="bg-orange-500 h-full rounded-sm w-3/4" >
+              </div>
+              </div>
             </div>
-          </div>
         </a>
       </div>
     </div>
-
-      <div>
-        <span class="text-2xl font-bold">25%</span>
-        <div class="relative">
-          <div class="w-full bg-gray-200 rounded-sm h-8">
-            <div class="bg-red-500 h-full rounded-sm" style="width: 25%"></div>
-<!--            <div class="bg-red-500 h-full rounded-sm" [style.width] ="currentTheme[i].progress + '%' "></div>-->
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <span class="text-2xl font-bold">50%</span>
-        <div class="relative">
-          <div class="w-full bg-gray-200 rounded-sm h-8">
-            <div class="bg-orange-500 h-full rounded-sm" style="width: 50%"></div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <span class="text-2xl font-bold">95%</span>
-        <div class="relative">
-          <div class="w-full bg-gray-200 rounded-sm h-8">
-            <div class="bg-green-500 h-full rounded-sm" style="width: 95%"></div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <span class="text-2xl font-bold">80%</span>
-        <div class="relative">
-          <div class="w-full bg-gray-200 rounded-sm h-8">
-            <div class="bg-green-500 h-full rounded-sm" style="width: 80%"></div>
-          </div>
-        </div>
-      </div>
-
-    </div>
   </div>
-
+</div>
 
 

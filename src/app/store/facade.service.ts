@@ -29,5 +29,13 @@ export class FacadeService {
   getExam() {
     return this.selectorService.exam();
   }
+  getTrainingTheme(){
+    return this.selectorService.trainingTheme();
+  }
+
+  setTheme(theme: string) {
+    this.reducerService.setTheme(theme);
+
+  }
 }
 
