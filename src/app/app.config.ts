@@ -12,7 +12,7 @@ const dbConfig: DBConfig  = {
     store: 'question-data',
     storeConfig: { keyPath: 'questionIndex', autoIncrement: false },
     storeSchema: [
-      { name: 'isCorrect', keypath: 'isCorrect', options: { unique: false } }
+      { name: 'status', keypath: 'status', options: { unique: false } }
     ]
   }],
 };

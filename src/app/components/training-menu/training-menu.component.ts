@@ -1,9 +1,10 @@
-import {Component, DestroyRef, inject, OnInit} from '@angular/core';
+import {Component, computed, DestroyRef, inject, OnInit} from '@angular/core';
 import {FacadeService} from "../../store/facade.service";
 import {UtilityService} from "../../core/services/utility.service";
 import {NgClass, NgForOf} from "@angular/common";
 import {RouterLink} from "@angular/router";
 import {NgxIndexedDBService} from "ngx-indexed-db";
+import {UserAnswer} from "../../core/enums/user-answer";
 
 @Component({
   selector: 'app-training-menu',
@@ -17,30 +18,33 @@ import {NgxIndexedDBService} from "ngx-indexed-db";
   styleUrl: './training-menu.component.css',
 
 })
-export class TrainingMenuComponent implements OnInit {
+export class TrainingMenuComponent {
   facadeService = inject(FacadeService);
-  utilityService = inject(UtilityService);
-  dbService = inject(NgxIndexedDBService);
-  destroyRef = inject(DestroyRef);
+  bundeslandID = this.facadeService.bundeslandID();
+  selectedTheme = this.facadeService.getTrainingTheme();
 
-  allthemes= this.facadeService.selectorService.themes;
-  themes:string[] = [];
-
-  bundeslandID = this.facadeService.selectorService.appStore.bundeslandId.asReadonly();
-  selectedTheme = this.facadeService.selectorService.appStore.trainingTheme.asReadonly();
-
-  ngOnInit() {
-    this.themes = this.allthemes.slice(0,20);
-    this.themes.push(this.selectedBundeslandName());
-  }
-
-  selectedThemeQustions (){
-    return this.facadeService.selectorService.bookletData.map(question => question.theme === this.selectedTheme())
-  }
-
-  selectedBundeslandName = () => {
-    return this.utilityService.bundeslandNameService.getBundeslandName(this.bundeslandID());
-  }
+  statistics = computed(() => {
+    const stats: { themeName: string, empty: number, correct: number, incorrect: number } [] = [];
+    const themes = this.facadeService.themes();
+    const allQuestions = this.facadeService.allQuestions();
+    for (const themeName of themes) {
+      const stat = { themeName: themeName, empty: 0, correct: 0, incorrect: 0 }
+      allQuestions
+        .filter(question => question.theme === themeName)
+        .forEach(question => {
+          if(question.userAnswer === UserAnswer.Correct){
+            stat.correct++;
+          } else if(question.userAnswer === UserAnswer.Incorrect){
+            stat.incorrect++;
+          } else {
+            stat.empty++;
+          }
+        })
+      stats.push(stat)
+    }
+    console.log(themes)
+    return stats;
+  });
 
   onThemeSelect(theme: string) {
     this.facadeService.setTheme(theme);

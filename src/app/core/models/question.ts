@@ -1,3 +1,4 @@
+import {UserAnswer} from "../enums/user-answer";
 
 export class Question {
   question: string ='';
@@ -7,4 +8,5 @@ export class Question {
   theme: string = '';
   id: number = 0;
   correctAnswer: string = '';
+  userAnswer?: UserAnswer = 0;
 }

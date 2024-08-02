@@ -1,14 +1,14 @@
-import {Injectable, signal} from '@angular/core';
-import {booklet} from "./booklet";
-import {Question} from "../core/question";
+import {computed, Injectable, Signal, signal} from '@angular/core';
+import {Question} from "../core/models/question";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppStoreService {
-  readonly booklet = booklet;
-  bundeslandId = signal('');
+  booklet = signal<Question[]>([]);
+  bundeslandId = signal('0');
   test= signal<{userAnswer: number, question:Question}[]>([]);
   trainingTheme = signal('');
+
 
 }

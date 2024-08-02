@@ -16,31 +16,30 @@ export class QuestionsComponent implements OnInit{
   facadeService = inject(FacadeService);
   utilityService = inject(UtilityService);
 
-  allthemes= this.facadeService.selectorService.themes;
+  allthemes= this.facadeService.allQuestions().filter(data => data.theme);
   themes:string[] = [];
   currentThemeIndex: number = 0;
-  selectedThemeQuestions = this.facadeService.selectorService.bookletData;
+  selectedThemeQuestions = this.allthemes.filter(data => data.theme);
   showTheme = "Verfassungsprinzipien";
-  bundeslandID = this.facadeService.selectorService.appStore.bundeslandId.asReadonly();
+  bundeslandID = this.facadeService.bundeslandID;
 
+  ngOnInit() {
+    this.selectedThemeQuestions = this.allthemes.filter(data => data.theme === "Verfassungsprinzipien");
+    // this.themes = this.themes.push(this.allthemes.slice(0,20));
+    this.themes.push(this.selectedBundeslandName());
+  }
   selectedBundeslandQuestions = () => {
-    return this.utilityService.bundeslandQuestionsService.getBundeslandQuestions(this.bundeslandID());
+    return this.facadeService.getBundeslandQuestions();
   }
 
   selectedBundeslandName = () => {
-    return this.utilityService.bundeslandNameService.getBundeslandName(this.bundeslandID());
-  }
-
-  ngOnInit() {
-    this.selectedThemeQuestions = this.facadeService.selectorService.bookletData.filter(data => data.theme === "Verfassungsprinzipien");
-    this.themes = this.allthemes.slice(0,20);
-    this.themes.push(this.selectedBundeslandName());
+    return this.facadeService.bundeslandName();
   }
 
   onBackTheme(theme: string){
     if (this.currentThemeIndex >= 0) {
       this.currentThemeIndex--;
-      this.selectedThemeQuestions = this.facadeService.selectorService.bookletData.filter(data => data.theme === theme && data.id < 301 );
+      this.selectedThemeQuestions = this.allthemes.filter(data => data.theme === theme && data.id < 301 );
       this.showTheme = theme;
     }
   }
@@ -48,7 +47,7 @@ export class QuestionsComponent implements OnInit{
   onNextTheme(theme: string) {
     if (this.currentThemeIndex <= this.themes.length) {
       this.currentThemeIndex++;
-      this.selectedThemeQuestions = this.facadeService.selectorService.bookletData.filter(data => data.theme === theme && data.id < 301 );
+      this.selectedThemeQuestions = this.allthemes.filter(data => data.theme === theme && data.id < 301 );
       if(this.themes[this.themes.length -1] === this.selectedBundeslandName()){
         const bundeslandQuestions = this.selectedBundeslandQuestions();
         this.selectedThemeQuestions = this.selectedThemeQuestions.concat(bundeslandQuestions);

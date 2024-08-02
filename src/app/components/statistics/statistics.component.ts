@@ -2,7 +2,7 @@ import {Component, inject, OnInit} from '@angular/core';
 import {FacadeService} from "../../store/facade.service";
 import {RouterLink} from "@angular/router";
 import {UtilityService} from "../../core/services/utility.service";
-import {Question} from "../../core/question";
+import {Question} from "../../core/models/question";
 import {NgIf} from "@angular/common";
 
 
@@ -27,7 +27,7 @@ export class StatisticsComponent implements OnInit {
   nullCount = 0;
 
   ngOnInit() {
-    this.facadeService.selectorService.exam().map((e)=> {
+    this.facadeService.getExam().map((e)=> {
       if(e.userAnswer === -1) {
         this.nullCount++;
       } else if (e.userAnswer === e.question.correctAnswerIndex){

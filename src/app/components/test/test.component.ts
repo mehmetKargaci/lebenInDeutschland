@@ -1,6 +1,6 @@
 import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {FacadeService} from "../../store/facade.service";
-import { Question } from '../../core/question';
+import { Question } from '../../core/models/question';
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import {NgForOf} from "@angular/common";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
@@ -28,15 +28,15 @@ export class TestComponent implements OnInit{
   currentQuestionIndex: number = 0;
   answerControl = new FormControl();
   showAnswers: boolean = true;
-  bundeslandID = this.facadeService.selectorService.appStore.bundeslandId.asReadonly();
+  bundeslandID = this.facadeService.bundeslandID;
 
-  selectedBundeslandQuestions = () => {
-    return this.utilityService.bundeslandQuestionsService.getBundeslandQuestions(this.bundeslandID());
+  selectedBundeslandQuestions ()  {
+    return this.facadeService.getBundeslandQuestions();
   }
 
 
   ngOnInit() {
-    this.commonQuestions = this.facadeService.selectorService.commonQuestions();
+    this.commonQuestions = this.facadeService.commonQuestions();
 
     this.generateRandomExam();
     this.answerControl.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(answer => {

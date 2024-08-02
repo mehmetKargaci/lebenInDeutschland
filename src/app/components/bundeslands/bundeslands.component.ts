@@ -1,8 +1,7 @@
 import {Component, inject} from '@angular/core';
 import { DialogRef, DialogCloseDirective } from '@ngneat/dialog';
 import {Data} from "@angular/router";
-import {FacadeService} from "../../store/facade.service";
-import {LocalStorageService} from "../../core/services/local-storage.service";
+import {UtilityService} from "../../core/services/utility.service";
 
 
 @Component({
@@ -14,11 +13,11 @@ import {LocalStorageService} from "../../core/services/local-storage.service";
 })
 export class BundeslandsComponent {
   ref: DialogRef<Data, boolean> = inject(DialogRef);
-  localStorage = inject(LocalStorageService);
+  utilityService = inject(UtilityService);
   selectedBundesland = '';
 
   selectBundesland(selectedBundesland: string) {
     this.selectedBundesland = selectedBundesland;
-    this.localStorage.setItem('bundeslandID', this.selectedBundesland);
+    this.utilityService.setItem('bundeslandID', this.selectedBundesland);
   }
 }

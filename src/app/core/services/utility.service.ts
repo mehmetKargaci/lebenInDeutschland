@@ -1,20 +1,15 @@
-import {inject, Injectable} from '@angular/core';
-import {BundeslandNameService} from "./bundesland-name.service";
-import {BundeslandQuestionsService} from "./bundesland-questions.service";
-import {LocalStorageService} from "./local-storage.service";
-import {CalculationService} from "./calculation.service";
-import {FacadeService} from "../../store/facade.service";
+import {Injectable} from '@angular/core';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilityService {
-  bundeslandNameService= inject(BundeslandNameService);
-  bundeslandQuestionsService= inject(BundeslandQuestionsService);
+  setItem(key: string, value: string): void {
+    localStorage.setItem(key, value);
+  }
 
-
-  calculationService = inject(CalculationService);
-  localStorageService = inject(LocalStorageService);
-
-  constructor() { }
+  getItem(key: string): string | null {
+    return localStorage.getItem(key);
+  }
 }

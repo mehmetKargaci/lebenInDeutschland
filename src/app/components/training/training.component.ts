@@ -3,12 +3,10 @@ import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {RouterLink} from "@angular/router";
 import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FacadeService} from "../../store/facade.service";
-import {UtilityService} from "../../core/services/utility.service";
-import {Question} from "../../core/question";
+import {Question} from "../../core/models/question";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {NgxIndexedDBService} from "ngx-indexed-db";
-import {take} from "rxjs";
-import {booklet} from "../../store/booklet";
+import {UserAnswer} from "../../core/enums/user-answer";
 
 @Component({
   selector: 'app-training',
@@ -35,38 +33,42 @@ export class TrainingComponent implements OnInit {
   showAnswers: boolean = true;
   correctAnswer = false;
   wrongAnswer = false;
-  selectedTheme = this.facadeService.selectorService.appStore.trainingTheme.asReadonly();
+  selectedTheme = this.facadeService.getTrainingTheme();
 
   ngOnInit() {
-    this.trainingQuestions = this.facadeService.selectorService.bookletData.filter(question => question.theme === this.selectedTheme());
+    this.trainingQuestions = this.facadeService.allQuestions().filter(question => question.theme === this.selectedTheme);
     this.answerControl.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(answer => {
       if (answer != null && answer === this.trainingQuestions[this.currentQuestionIndex].correctAnswerIndex) {
         this.correctAnswer = true;
       }
-        this.wrongAnswer = true;
+      this.wrongAnswer = true;
     });
   }
 
-
   onNextClick() {
-    if (this.currentQuestionIndex < this.trainingQuestions.length - 1) {
-      this.currentQuestionIndex++;
-    }
-
-    if (this.answerControl.value != null && this.answerControl.value === this.trainingQuestions[this.currentQuestionIndex].correctAnswerIndex){
+    if (this.currentQuestionIndex === this.trainingQuestions.length) return;
+    if (this.answerControl.value === this.trainingQuestions[this.currentQuestionIndex].correctAnswerIndex) {
       this.dbService
         .update('question-data', {
-          questionIndex:this.trainingQuestions[this.currentQuestionIndex].id,
-          isCorrect:true
+          questionIndex: this.currentQuestionIndex,
+          status: UserAnswer.Correct
         })
         .pipe(takeUntilDestroyed(this.destroyRef)).subscribe((storeData) => {
-          console.log('storeData: ', storeData);
-        });
-
+        console.log('correct: ', storeData);
+        this.facadeService.updateBooklet(storeData.status, this.currentQuestionIndex);
+      });
+    } else if(this.answerControl.value != null) {
+      this.dbService
+        .update('question-data', {
+          questionIndex: this.currentQuestionIndex,
+          status: UserAnswer.Incorrect
+        })
+        .pipe(takeUntilDestroyed(this.destroyRef)).subscribe((storeData) => {
+        console.log('incorrect: ', storeData);
+        this.facadeService.updateBooklet(storeData.status, this.currentQuestionIndex);
+      });
     }
-    this.dbService.getByKey('question-data', this.trainingQuestions[this.currentQuestionIndex].id).pipe(takeUntilDestroyed(this.destroyRef)).subscribe((questionData) => {
-      console.log(questionData);
-    });
+    this.currentQuestionIndex++;
     this.answerControl.setValue(null);
   }
 }

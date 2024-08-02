@@ -16,7 +16,7 @@
       <h1 class="text-md text-fuchsia-500 font-medium">Progress: {{currentQuestionIndex +1}}/33</h1>
     </div >
     <div class="flex flex-col flex-center mt-4 ">
-      <h1 class="text-lg"> Frage-{{facadeService.selectorService.id[currentQuestionIndex]}}: {{examQuestions[currentQuestionIndex].question}}</h1>
+      <h1 class="text-lg"> Frage-{{currentQuestionIndex +1}}: {{examQuestions[currentQuestionIndex].question}}</h1>
       @if(examQuestions[currentQuestionIndex].hasPhoto){
         <div class="flex justify-center items-center" >
           <img src="../../../assets/images/{{examQuestions[currentQuestionIndex].id}}.png" alt="image">
