@@ -1,9 +1,7 @@
-import {Component, computed, DestroyRef, inject, OnInit} from '@angular/core';
+import {Component, computed, inject} from '@angular/core';
 import {FacadeService} from "../../store/facade.service";
-import {UtilityService} from "../../core/services/utility.service";
 import {NgClass, NgForOf} from "@angular/common";
 import {RouterLink} from "@angular/router";
-import {NgxIndexedDBService} from "ngx-indexed-db";
 import {UserAnswer} from "../../core/enums/user-answer";
 
 @Component({
@@ -21,7 +19,6 @@ import {UserAnswer} from "../../core/enums/user-answer";
 export class TrainingMenuComponent {
   facadeService = inject(FacadeService);
   bundeslandID = this.facadeService.bundeslandID();
-  selectedTheme = this.facadeService.getTrainingTheme();
 
   statistics = computed(() => {
     const stats: { themeName: string, empty: number, correct: number, incorrect: number } [] = [];
@@ -42,7 +39,6 @@ export class TrainingMenuComponent {
         })
       stats.push(stat)
     }
-    console.log(themes)
     return stats;
   });
 

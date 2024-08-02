@@ -5,7 +5,6 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import {NgForOf} from "@angular/common";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {RouterLink} from "@angular/router";
-import {UtilityService} from "../../core/services/utility.service";
 
 
 @Component({
@@ -21,7 +20,6 @@ import {UtilityService} from "../../core/services/utility.service";
 })
 export class TestComponent implements OnInit{
   facadeService = inject(FacadeService);
-  utilityService = inject(UtilityService);
   destroyRef = inject(DestroyRef);
   commonQuestions: Question[] = [];
   examQuestions: Question[] = [];

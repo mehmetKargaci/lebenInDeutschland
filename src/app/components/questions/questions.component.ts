@@ -1,7 +1,7 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {FacadeService} from "../../store/facade.service";
 import {NgForOf} from "@angular/common";
-import {UtilityService} from "../../core/services/utility.service";
+
 
 @Component({
   selector: 'app-questions',
@@ -14,19 +14,20 @@ import {UtilityService} from "../../core/services/utility.service";
 })
 export class QuestionsComponent implements OnInit{
   facadeService = inject(FacadeService);
-  utilityService = inject(UtilityService);
 
   allthemes= this.facadeService.allQuestions().filter(data => data.theme);
-  themes:string[] = [];
+  themes = this.facadeService.themes();
+  themes2:string[] = [];
   currentThemeIndex: number = 0;
   selectedThemeQuestions = this.allthemes.filter(data => data.theme);
   showTheme = "Verfassungsprinzipien";
   bundeslandID = this.facadeService.bundeslandID;
 
   ngOnInit() {
+    console.log(this.themes[this.currentThemeIndex]);
     this.selectedThemeQuestions = this.allthemes.filter(data => data.theme === "Verfassungsprinzipien");
     // this.themes = this.themes.push(this.allthemes.slice(0,20));
-    this.themes.push(this.selectedBundeslandName());
+    // this.themes.push(this.selectedBundeslandName());
   }
   selectedBundeslandQuestions = () => {
     return this.facadeService.getBundeslandQuestions();

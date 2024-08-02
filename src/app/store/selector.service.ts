@@ -12,7 +12,7 @@ export class SelectorService {
   questions = this.appStore.booklet().map((booklet) => booklet.question);
   themes = computed(()=>{
     const themes = this.commonQuestions().map((booklet) => booklet.theme);
-    return [...new Set(themes),this.getBundeslandName()]
+    return [...new Set([...themes]),this.getBundeslandName()]
   })
 
   bundeslandID = this.appStore.bundeslandId.asReadonly();
