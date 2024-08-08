@@ -1,22 +1,26 @@
-<div class=" fixed top-0 z-20 w-full flex flex-row justify-between p-4 border border-b-teal-200 bg-cyan-600">
-  <div class="text-white font-semibold">
-    <p>Leben In Deutschland Test</p>
+<div class="fixed top-0 z-20 w-full flex flex-row justify-between items-center border bg-gray-800 rounded-md">
+  <div class="content-center text-white font-semibold">
+    <div class="inline-flex items-baseline text-sm font-light text-white sm:font-light ml-0 md:justify-start">
+      <img class="object-center size-1/4 rounded-full sm:size-1/6" src="./assets/images/lib-logo.png">
+    </div>
   </div>
-  <div class="flex flex-row justify-between items-end gap-2 ">
-    <a routerLink="/questions"  routerLinkActive="text-blue-300">
-      <button class="border border-gray-500 bg-gray-600 text-white rounded-lg p-1" routerLinkActive="text-blue-300">Allgemeine Fragen</button>
+  <div class=" text-gray-800 sm:flex sm:flex-row sm:justify-between sm:items-end sm:gap-2 sm:text-orange-300 sm:font-light">
+    <a routerLink="/questions" class="rounded-lg p-1 font-normal" routerLinkActive="text-white" >
+     Allgemeine Fragen
     </a>
-    <a routerLink="/training-menu"  routerLinkActive="text-blue-300">
-      <button class="border border-gray-500 bg-gray-600 text-white rounded-lg p-1" routerLinkActive="text-blue-300">Trainieren Sie</button>
+    <a routerLink="/training-menu" class="rounded-lg p-1 font-normal" routerLinkActive="text-white" >
+      Trainieren Sie
     </a>
-    <a routerLink="/test"  routerLinkActive="text-blue-300">
-      <button class="border border-gray-500 bg-gray-600 text-white  rounded-lg p-1" routerLinkActive="text-blue-300"> Probeprufüng</button>
+    <a routerLink="/test" class="rounded-lg p-1 font-normal" routerLinkActive="text-white">
+      Probeprufüng
     </a>
-    <a routerLink="/" >
-      <div class="text-white p-1 " ><button>Home</button></div>
+  </div>
+  <div class="flex flex-row justify-between items-end gap-2 text-orange-400">
+    <a routerLink="/" class="p-1 font-extrabold" routerLinkActive="text-white" [routerLinkActiveOptions]="{ exact: true }">
+      Startseite
     </a>
-    <a>
-      <div class="text-white p-1 " ><button>Settings</button></div>
+    <a routerLink="/settings" class="p-1 font-extrabold text-white" routerLinkActive="text-white" >
+      Einstellungen
     </a>
   </div>
 </div>

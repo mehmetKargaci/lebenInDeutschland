@@ -74,7 +74,6 @@ export class TestComponent implements OnInit{
 
   submitExam() {
     const test = this.facadeService.getExam();
-    console.log(test);
   }
 
 }

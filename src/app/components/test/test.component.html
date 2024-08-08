@@ -1,16 +1,14 @@
 <div class="flex flex-col mt-24 justify-center ml-32 z-20 m-4 mb-28">
-  <div class="flex flex-row justify-center ">
-    <a routerLink="/statistics">
-      <button class="focus:outline-black text-white text-lg py-2.5 px-4 border-b-4 border-red-700 bg-red-500 hover:bg-red-400 rounded-lg" (click)="submitExam()">Test Beenden</button>
-    </a>
-   </div>
-
-  <div class="flex flex-row justify-center mt-8">
-    <div >
-      <h2 class="font-semibold text-2xl">Testen Sie Sich</h2>
+  <div class="flex flex-row justify-between mt-8 ml-1">
+    <div>
+      <h2 class="text-orange-500 font-normal text-lg">Testen Sie Sich</h2>
+    </div>
+    <div class="">
+      <a routerLink="/statistics">
+        <button class="text-white text-lg py-1 px-4 border-b-4 border-red-500 bg-red-500 hover:bg-red-700 rounded-lg" (click)="submitExam()">Test Beenden</button>
+      </a>
     </div>
   </div>
-
   <div class=" mt-4 items-start font-medium">
     <div class="flex flex-col justify-center items-start ">
       <h1 class="text-md text-fuchsia-500 font-medium">Progress: {{currentQuestionIndex +1}}/33</h1>
@@ -41,7 +39,6 @@
               [value]="i"
               [formControl]="answerControl"
 
-
             />
             <div class="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100">
               <svg
@@ -68,9 +65,9 @@
       </div>
     </div>
   </div>
-  <div class="inline-flex items-center justify-center px-3 py-1.5 text-indigo-500 gap-2 mt-8">
+  <div class="inline-flex justify-start px-3 py-1.5 text-indigo-500 gap-2 mt-8 mb-8">
     <div class="inline-flex items-stretch px-3 py-1.5 text-indigo-500 ">
-      <label class="flex flex-row focus:outline-black text-white rounded-lg text-sm py-2.5 px-4 border-b-4 border-gray-600 bg-gray-500 hover:bg-gray-400 hover:text-orange-700">
+      <label class="flex flex-row text-white rounded-lg text-sm py-2.5 px-4 border-b-4 border-gray-600 bg-gray-500 hover:bg-gray-400 hover:text-orange-700">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18">
           </path>
@@ -78,8 +75,8 @@
         <button class="mr-1 font-bold text-lg rounded-lg" (click)="onBackClick()" [disabled]="currentQuestionIndex === examQuestions.length - 1">Zurück</button>
       </label>
     </div>
-    <div class="inline-flex items-stretch px-3 py-1.5 text-indigo-500 ">
-      <label class="flex flex-row focus:outline-black text-white rounded-lg text-sm py-2.5 px-4 border-b-4 border-gray-600 bg-gray-500 hover:bg-gray-400 hover:text-orange-700">
+    <div class="inline-flex items-stretch px-3 py-1.5 ml-16 text-indigo-500 ">
+      <label class="flex flex-row text-white rounded-lg text-sm py-2.5 px-4 border-b-4 border-gray-600 bg-gray-500 hover:bg-gray-400 hover:text-orange-700">
         <button class="mr-1 font-bold text-lg rounded-lg" (click)="onNextClick()" [disabled]="currentQuestionIndex === examQuestions.length - 1">Nächste</button>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3">

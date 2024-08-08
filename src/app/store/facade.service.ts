@@ -15,13 +15,9 @@ export class FacadeService {
   themes = this.selectorService.themes;
   getBundeslandQuestions = this.selectorService.getBundeslandQuestions;
   bundeslandName = this.selectorService.getBundeslandName;
+  allQuestions = this.selectorService.allQuestions;
+  commonQuestions = this.selectorService.commonQuestions;
 
-  commonQuestions(){
-    return this.selectorService.commonQuestions();
-  }
-  allQuestions(){
-    return this.selectorService.allQuestions();
-  }
 
   setBundeslandID(bundeslandID: string) {
     this.reducerService.setBundeslandId(bundeslandID);
@@ -54,5 +50,8 @@ export class FacadeService {
     this.reducerService.updateBooklet(status, currentQuestionIndex);
   }
 
+  resetBooklet() {
+    this.reducerService.resetBooklet();
+  }
 }
 

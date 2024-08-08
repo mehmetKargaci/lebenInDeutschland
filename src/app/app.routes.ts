@@ -7,6 +7,7 @@ import {StatisticsComponent} from "./components/statistics/statistics.component"
 import {ExamAnalysisComponent} from "./components/exam-analysis/exam-analysis.component";
 import {TrainingComponent} from "./components/training/training.component";
 import {TrainingMenuComponent} from "./components/training-menu/training-menu.component";
+import {SettingsComponent} from "./components/settings/settings.component";
 
 export const routes: Routes = [
   {
@@ -32,6 +33,10 @@ export const routes: Routes = [
   {
     path: "training-menu",
     component: TrainingMenuComponent,
+  },
+  {
+    path: "settings",
+    component: SettingsComponent,
   },
   {
     path: "exam-analysis",

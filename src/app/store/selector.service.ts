@@ -22,9 +22,7 @@ export class SelectorService {
     return this.appStore.booklet().filter(q => q.id < 301);
   })
 
-  allQuestions = computed(()=>{
-    return this.appStore.booklet().filter(q => q.id);
-  })
+  allQuestions = this.appStore.booklet.asReadonly();
 
   trainingTheme() {
     return this.appStore.trainingTheme();

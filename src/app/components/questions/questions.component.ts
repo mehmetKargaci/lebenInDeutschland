@@ -24,7 +24,6 @@ export class QuestionsComponent implements OnInit{
   bundeslandID = this.facadeService.bundeslandID;
 
   ngOnInit() {
-    console.log(this.themes[this.currentThemeIndex]);
     this.selectedThemeQuestions = this.allthemes.filter(data => data.theme === "Verfassungsprinzipien");
     // this.themes = this.themes.push(this.allthemes.slice(0,20));
     // this.themes.push(this.selectedBundeslandName());

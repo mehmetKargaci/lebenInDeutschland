@@ -1,21 +1,21 @@
 
 <div class="flex flex-col mt-20 justify-start items-start z-20 mb-28">
   <div class="flex flex-row gap-2 justify-center items-center pl-16">
-    <div class="flex flex-row border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-100" >
+    <div class="flex flex-row border border-indigo-300 bg-blue-200 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-100" >
       <label class="flex flex-row">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18">
         </path>
       </svg>
-      <button class="font-bold text-lg" (click)="onBackTheme(themes[currentThemeIndex])" [disabled]="currentThemeIndex < 0" >{{themes[currentThemeIndex]}}</button>
+      <button class="font-bold text-lg text-blue-700" (click)="onBackTheme(themes[currentThemeIndex])" [disabled]="currentThemeIndex < 0" >{{themes[currentThemeIndex]}}</button>
       </label>
     </div>
-    <div class="flex flex-col gap-2 border border-indigo-300 text-pink-800 px-3 py-1.5 rounded-md bg-indigo-300" >
+    <div class="flex flex-col gap-2 border border-indigo-300 bg-blue-200  text-pink-800 px-3 py-1.5 rounded-md" >
       <button class="ml-1 font-bold text-lg ">{{themes[currentThemeIndex +1]}}</button>
     </div>
-    <div class="flex flex-row gap-2 border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-100" >
+    <div class="flex flex-row gap-2 border border-indigo-300 bg-blue-200 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-100" >
       <label class="flex flex-row">
-        <button class="ml-1 font-bold text-lg" (click)="onNextTheme(themes[currentThemeIndex + 2])" [disabled]="currentThemeIndex + 2 >= themes.length" >{{themes[currentThemeIndex + 2]}}</button>
+        <button class="ml-1 font-bold text-lg text-blue-700" (click)="onNextTheme(themes[currentThemeIndex + 2])" [disabled]="currentThemeIndex + 2 >= themes.length" >{{themes[currentThemeIndex + 2]}}</button>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3">
         </path>
@@ -48,7 +48,7 @@
           >
             <input
               type="radio"
-              class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-gray-400 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:bg-green-800 checked:bg-green-800 checked:before:bg-green-800 hover:before:opacity-10"
+              class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-gray-400 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:bg-green-800 checked:before:bg-green-800 hover:before:opacity-10"
               name="options"
               [id]="'option'+i"
               [name]="'answer' + data.id"

@@ -7,6 +7,7 @@ import {Question} from "../../core/models/question";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {NgxIndexedDBService} from "ngx-indexed-db";
 import {UserAnswer} from "../../core/enums/user-answer";
+import {take} from "rxjs";
 
 @Component({
   selector: 'app-training',
@@ -28,48 +29,65 @@ export class TrainingComponent implements OnInit {
   destroyRef = inject(DestroyRef);
 
   trainingQuestions: Question[] = [];
-  currentQuestionIndex: number = 0;
+  currentQuestion? :Question;
   answerControl = new FormControl();
-  showAnswers: boolean = true;
+  selectedTheme = this.facadeService.getTrainingTheme();
+  userClicked = false;
   correctAnswer = false;
   wrongAnswer = false;
-  selectedTheme = this.facadeService.getTrainingTheme();
+  trainingQuestionIndex = 0;
+  index = 1;
 
   ngOnInit() {
-    this.trainingQuestions = this.facadeService.allQuestions().filter(question => question.theme === this.selectedTheme);
+    this.trainingQuestions = this.facadeService.allQuestions().filter(question =>  {
+      return question.theme === this.selectedTheme && question.userAnswer !== UserAnswer.Correct;
+    });
+    if(this.trainingQuestions.length === 0){
+      this.trainingQuestions = this.facadeService.allQuestions().filter(question =>  {
+        return question.theme === this.selectedTheme;
+      });
+    }
+    this.currentQuestion = this.trainingQuestions[0];
     this.answerControl.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(answer => {
-      if (answer != null && answer === this.trainingQuestions[this.currentQuestionIndex].correctAnswerIndex) {
+      if(!this.currentQuestion) return;
+      const isCorrect = answer != null && answer === this.currentQuestion.correctAnswerIndex;
+      if (!this.userClicked && isCorrect) {
+        this.dbService
+          .update('question-data', {
+            questionIndex: this.currentQuestion.id-1,
+            status: UserAnswer.Correct
+          })
+          .pipe(take(1))
+          .subscribe((storeData) => {
+            this.facadeService.updateBooklet(storeData.status, this.currentQuestion ? this.currentQuestion.id-1 : -1);
+          });
         this.correctAnswer = true;
+      } else if (!isCorrect){
+        this.dbService
+          .update('question-data', {
+            questionIndex: this.currentQuestion.id-1,
+            status: UserAnswer.Incorrect
+          })
+          .pipe(take(1))
+          .subscribe((storeData) => {
+            this.facadeService.updateBooklet(storeData.status, this.currentQuestion ? this.currentQuestion.id-1 : -1);
+          });
+        this.wrongAnswer = true;
       }
-      this.wrongAnswer = true;
     });
   }
 
   onNextClick() {
-    if (this.currentQuestionIndex === this.trainingQuestions.length) return;
-    if (this.answerControl.value === this.trainingQuestions[this.currentQuestionIndex].correctAnswerIndex) {
-      this.dbService
-        .update('question-data', {
-          questionIndex: this.currentQuestionIndex,
-          status: UserAnswer.Correct
-        })
-        .pipe(takeUntilDestroyed(this.destroyRef)).subscribe((storeData) => {
-        console.log('correct: ', storeData);
-        this.facadeService.updateBooklet(storeData.status, this.currentQuestionIndex);
-      });
-    } else if(this.answerControl.value != null) {
-      this.dbService
-        .update('question-data', {
-          questionIndex: this.currentQuestionIndex,
-          status: UserAnswer.Incorrect
-        })
-        .pipe(takeUntilDestroyed(this.destroyRef)).subscribe((storeData) => {
-        console.log('incorrect: ', storeData);
-        this.facadeService.updateBooklet(storeData.status, this.currentQuestionIndex);
-      });
+    if (this.currentQuestion) {
+      this.trainingQuestionIndex = this.trainingQuestions.indexOf(this.currentQuestion)
+      if (this.trainingQuestionIndex +1 === this.trainingQuestions.length) return;
+      this.currentQuestion = this.trainingQuestions[this.trainingQuestionIndex+1];
+      this.userClicked = false;
+      this.index++;
+      this.answerControl.setValue(null);
     }
-    this.currentQuestionIndex++;
-    this.answerControl.setValue(null);
+
   }
+
 }
 
