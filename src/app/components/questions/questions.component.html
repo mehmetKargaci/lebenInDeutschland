@@ -1,21 +1,21 @@
 
-<div class="flex flex-col mt-20 justify-start items-start z-20 mb-28">
-  <div class="flex flex-row gap-2 justify-center items-center pl-16">
-    <div class="flex flex-row border border-indigo-300 bg-blue-200 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-100" >
+<div class="flex flex-col justify-center z-20 mb-36 mt-28">
+  <div class="flex flex-row justify-center items-center gap-2 ">
+    <div class="flex flex-row  border border-indigo-300 bg-blue-200 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-100" >
       <label class="flex flex-row">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18">
         </path>
       </svg>
-      <button class="font-bold text-lg text-blue-700" (click)="onBackTheme(themes[currentThemeIndex])" [disabled]="currentThemeIndex < 0" >{{themes[currentThemeIndex]}}</button>
+      <button class="font-bold text-xs sm:text-lg text-blue-700 h-12" (click)="onBackTheme(themes[currentThemeIndex])" [disabled]="currentThemeIndex < 0" >{{themes[currentThemeIndex]}}</button>
       </label>
     </div>
-    <div class="flex flex-col gap-2 border border-indigo-300 bg-blue-200  text-pink-800 px-3 py-1.5 rounded-md" >
-      <button class="ml-1 font-bold text-lg ">{{themes[currentThemeIndex +1]}}</button>
+    <div class="flex flex-col gap-2 border border-indigo-300 bg-blue-300  text-pink-800 px-3 py-1.5 rounded-md" >
+      <button class="ml-1 font-bold text-xs sm:text-lg  h-12">{{themes[currentThemeIndex +1]}}</button>
     </div>
     <div class="flex flex-row gap-2 border border-indigo-300 bg-blue-200 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-100" >
       <label class="flex flex-row">
-        <button class="ml-1 font-bold text-lg text-blue-700" (click)="onNextTheme(themes[currentThemeIndex + 2])" [disabled]="currentThemeIndex + 2 >= themes.length" >{{themes[currentThemeIndex + 2]}}</button>
+        <button class="ml-1 font-bold text-xs sm:text-lg text-blue-700  h-12" (click)="onNextTheme(themes[currentThemeIndex + 2])" [disabled]="currentThemeIndex + 2 >= themes.length" >{{themes[currentThemeIndex + 2]}}</button>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3">
         </path>
@@ -23,13 +23,13 @@
       </label>
     </div>
   </div >
-  <div class="flex flex-col justify-center items-center mt-8 pl-16">
+  <div class="flex flex-col justify-center items-center mt-8 sm:pl-16">
     <div >
-      <h2 class="font-semibold text-2xl">Thema: {{showTheme}}</h2>
+      <h2 class="font-semibold text-2xl">Thema: {{initialTheme}}</h2>
     </div>
   </div>
 
-  <div class="flex flex-col justify-center items-start mt-1 mb-2 px-14"
+  <div class="flex flex-col justify-start items-start mt-1 mb-2 pl-4 sm:pl-16"
        *ngFor="let data of selectedThemeQuestions; let i = index">
     <div class="m-2 font-medium mt-8">
       <h1> Frage-{{i +1}}: {{data.question}}</h1>

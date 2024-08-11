@@ -28,7 +28,6 @@ export class TrainingMenuComponent {
   facadeService = inject(FacadeService);
   bundeslandID = this.facadeService.bundeslandID();
 
-
   statistics = computed(() => {
     const stats: { themeName: string, empty: number, correct: number, incorrect: number, total:number } [] = [];
     const themes = this.facadeService.themes();

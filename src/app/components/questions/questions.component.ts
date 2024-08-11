@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, computed, inject, OnInit} from '@angular/core';
 import {FacadeService} from "../../store/facade.service";
 import {NgForOf} from "@angular/common";
 
@@ -12,25 +12,20 @@ import {NgForOf} from "@angular/common";
   templateUrl: './questions.component.html',
   styleUrl: './questions.component.css'
 })
-export class QuestionsComponent implements OnInit{
+export class QuestionsComponent {
   facadeService = inject(FacadeService);
 
-  allthemes= this.facadeService.allQuestions().filter(data => data.theme);
+  initialTheme = "Verfassungsprinzipien";
+  allthemes= this.facadeService.allQuestions().filter(data => data.theme || this.initialTheme);
   themes = this.facadeService.themes();
-  themes2:string[] = [];
   currentThemeIndex: number = 0;
-  selectedThemeQuestions = this.allthemes.filter(data => data.theme);
-  showTheme = "Verfassungsprinzipien";
+  selectedThemeQuestions = this.allthemes.filter(data => data.theme || this.initialTheme);
   bundeslandID = this.facadeService.bundeslandID;
 
-  ngOnInit() {
-    this.selectedThemeQuestions = this.allthemes.filter(data => data.theme === "Verfassungsprinzipien");
-    // this.themes = this.themes.push(this.allthemes.slice(0,20));
-    // this.themes.push(this.selectedBundeslandName());
-  }
   selectedBundeslandQuestions = () => {
     return this.facadeService.getBundeslandQuestions();
   }
+
 
   selectedBundeslandName = () => {
     return this.facadeService.bundeslandName();
@@ -40,7 +35,7 @@ export class QuestionsComponent implements OnInit{
     if (this.currentThemeIndex >= 0) {
       this.currentThemeIndex--;
       this.selectedThemeQuestions = this.allthemes.filter(data => data.theme === theme && data.id < 301 );
-      this.showTheme = theme;
+      this.initialTheme = theme;
     }
   }
 
@@ -49,10 +44,10 @@ export class QuestionsComponent implements OnInit{
       this.currentThemeIndex++;
       this.selectedThemeQuestions = this.allthemes.filter(data => data.theme === theme && data.id < 301 );
       if(this.themes[this.themes.length -1] === this.selectedBundeslandName()){
-        const bundeslandQuestions = this.selectedBundeslandQuestions();
-        this.selectedThemeQuestions = this.selectedThemeQuestions.concat(bundeslandQuestions);
+        const bundeslandQuestions = this.selectedBundeslandQuestions;
+        // this.selectedThemeQuestions = this.selectedThemeQuestions.concat(bundeslandQuestions());
       }
-      this.showTheme = theme;
+      this.initialTheme = theme;
     }
   }
 }
