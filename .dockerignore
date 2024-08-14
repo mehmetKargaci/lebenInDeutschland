@@ -1,0 +1,12 @@
+.angular
+.vscode
+.idea
+node_modules
+#dist
+.dockerignore
+.editorconfig
+.gitignore
+.prettierrc
+docker-compose.yml
+docker-compose-local.yml
+Dockerfile
