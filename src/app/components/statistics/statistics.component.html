@@ -1,4 +1,4 @@
-<div class="container flex flex-col justify-center items-start mx-12 my-10 mt-20 p-6 bg-white shadow-lg rounded-lg">
+<div class="container flex flex-col justify-center items-start mx-12 my-10 mt-20 bg-white rounded-lg">
   <div class="flex flex-col justify-center items-start w-full ">
     <h2 class="text-pink-800 text-3xl font-bold mb-4">TEST ERGEBNIS</h2>
     <div class="w-full mb-6">
@@ -8,8 +8,8 @@
         <li><span class="font-semibold">Leere Antwort:</span> {{nullCount}}</li>
       </ul>
     </div>
-    <div *ngIf="result" class="w-full">
-      <h2 class="mt-8 text-green-700 text-2xl font-semibold text-center">
+    <div *ngIf="result" >
+      <h2 class="text-green-700 text-2xl font-semibold text-center">
         Du hast bestanden!!!
       </h2>
     </div>
@@ -20,7 +20,7 @@
     </div>
     <div class="flex justify-center w-full mt-8">
       <a routerLink="/exam-analysis" class="w-full">
-        <button class="font-bold rounded-md border border-indigo-300 text-lg bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-800 hover:text-orange-300 w-full">Testfragen anzeigen</button>
+        <button class="font-bold rounded-md border border-indigo-300 text-lg bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-800 hover:text-orange-300 sm:w-full">Testfragen anzeigen</button>
       </a>
     </div>
   </div>

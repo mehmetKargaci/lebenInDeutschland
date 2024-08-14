@@ -1,4 +1,4 @@
-import {Injectable, inject, computed} from '@angular/core';
+import {Injectable, inject, computed, Signal} from '@angular/core';
 import {AppStoreService} from "./app-store.service";
 import {Question} from "../core/models/question";
 
@@ -22,7 +22,10 @@ export class SelectorService {
     return this.appStore.booklet().filter(q => q.id < 301);
   })
 
-  allQuestions = this.appStore.booklet.asReadonly();
+
+  allQuestions:Signal<Question[]> = computed(()=> {
+    return this.appStore.booklet().filter(q => q.id < 461);
+  })
 
   trainingTheme() {
     return this.appStore.trainingTheme();

@@ -26,7 +26,6 @@ export class QuestionsComponent {
     return this.facadeService.getBundeslandQuestions();
   }
 
-
   selectedBundeslandName = () => {
     return this.facadeService.bundeslandName();
   }
