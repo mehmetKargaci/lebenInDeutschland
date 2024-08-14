@@ -1,28 +1,28 @@
 <div class="flex flex-col justify-center z-20 mb-36 mt-36">
   <div class="flex flex-row justify-center items-center">
-    <div class="flex flex-row justify-center items-center gap-2 m-2">
-      <label class="flex flex-row justify-center items-center border border-indigo-300 bg-blue-300  px-3 py-1.5 rounded-md h-20 w-full">
+    <div class="flex flex-row justify-center items-center gap-0.5 md:gap-2 m-2">
+      <label class="flex flex-row justify-center items-center border border-indigo-300 bg-blue-300  px-3 py-1.5 rounded-md h-20 w-32 sm:w-52 hover:bg-blue-200">
         <div
-          class="mr-2 h-0 w-0 border-x-8 border-x-transparent border-b-[16px] border-b-blue-600 rotate-[-90deg]"
+          class="mr-0.5 sm:mr-2 h-0 w-0 border-x-8 border-x-transparent border-b-[16px] border-b-blue-600 rotate-[-90deg]"
         ></div>
-        <button class=" font-bold text-xs sm:text-lg text-blue-700 break-words "
+        <button class=" font-bold text-[0.7rem] sm:text-lg text-blue-700 break-words "
                 (click)="onBackTheme(themes[currentThemeIndex])"
                 [disabled]="currentThemeIndex < 0">{{ themes[currentThemeIndex] }}
         </button>
       </label>
-      <label class="flex flex-col justify-center items-center border border-indigo-300 bg-blue-300  px-3 py-1.5 rounded-md h-20 w-full">
+      <label class="flex flex-col justify-center items-center border border-indigo-300 bg-blue-300  px-3 py-1.5 rounded-md h-20 w-32 sm:w-52">
         <button
           class="text-red-700 font-bold text-xs sm:text-lg  whitespace-normal break-words leading-tight ">{{ themes[currentThemeIndex + 1] }}
         </button>
       </label>
-      <label class="flex flex-row justify-center items-center border border-indigo-300 bg-blue-300 px-3 py-1.5 rounded-md h-20 w-full">
+      <label class="flex flex-row justify-center items-center border border-indigo-300 bg-blue-300 px-3 py-1.5 rounded-md h-20 w-32 sm:w-52 hover:bg-blue-200">
         <button
-          class="font-bold text-xs sm:text-lg text-blue-700  whitespace-normal break-words leading-tight"
+          class="font-bold text-[0.7rem] sm:text-lg text-blue-700  whitespace-normal break-words leading-tight"
           (click)="onNextTheme(themes[currentThemeIndex + 2])"
           [disabled]="currentThemeIndex + 2 >= themes.length">{{ themes[currentThemeIndex + 2] }}
         </button>
         <div
-          class="ml-2 h-0 w-0 border-x-8 border-x-transparent border-b-[16px] border-b-blue-600 rotate-90"
+          class="ml-0.5 sm:ml-2 h-0 w-0 border-x-8 border-x-transparent border-b-[16px] border-b-blue-600 rotate-90"
         ></div>
       </label>
     </div>
