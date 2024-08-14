@@ -1,41 +1,45 @@
-
-<div class="flex flex-col justify-center z-20 mb-36 mt-28">
-  <div class="flex flex-row justify-center items-center gap-2 ">
-    <div class="flex flex-row  border border-indigo-300 bg-blue-200 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-100" >
-      <label class="flex flex-row">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18">
-        </path>
-      </svg>
-      <button class="font-bold text-xs sm:text-lg text-blue-700 h-12" (click)="onBackTheme(themes[currentThemeIndex])" [disabled]="currentThemeIndex < 0" >{{themes[currentThemeIndex]}}</button>
+<div class="flex flex-col justify-center z-20 mb-36 mt-36">
+  <div class="flex flex-row justify-center items-center">
+    <div class="flex flex-row justify-center items-center gap-2 m-2">
+      <label class="flex flex-row justify-center items-center border border-indigo-300 bg-blue-300  px-3 py-1.5 rounded-md h-20 w-full">
+        <div
+          class="mr-2 h-0 w-0 border-x-8 border-x-transparent border-b-[16px] border-b-blue-600 rotate-[-90deg]"
+        ></div>
+        <button class=" font-bold text-xs sm:text-lg text-blue-700 break-words "
+                (click)="onBackTheme(themes[currentThemeIndex])"
+                [disabled]="currentThemeIndex < 0">{{ themes[currentThemeIndex] }}
+        </button>
+      </label>
+      <label class="flex flex-col justify-center items-center border border-indigo-300 bg-blue-300  px-3 py-1.5 rounded-md h-20 w-full">
+        <button
+          class="text-red-700 font-bold text-xs sm:text-lg  whitespace-normal break-words leading-tight ">{{ themes[currentThemeIndex + 1] }}
+        </button>
+      </label>
+      <label class="flex flex-row justify-center items-center border border-indigo-300 bg-blue-300 px-3 py-1.5 rounded-md h-20 w-full">
+        <button
+          class="font-bold text-xs sm:text-lg text-blue-700  whitespace-normal break-words leading-tight"
+          (click)="onNextTheme(themes[currentThemeIndex + 2])"
+          [disabled]="currentThemeIndex + 2 >= themes.length">{{ themes[currentThemeIndex + 2] }}
+        </button>
+        <div
+          class="ml-2 h-0 w-0 border-x-8 border-x-transparent border-b-[16px] border-b-blue-600 rotate-90"
+        ></div>
       </label>
     </div>
-    <div class="flex flex-col gap-2 border border-indigo-300 bg-blue-300  text-pink-800 px-3 py-1.5 rounded-md" >
-      <button class="ml-1 font-bold text-xs sm:text-lg  h-12">{{themes[currentThemeIndex +1]}}</button>
-    </div>
-    <div class="flex flex-row gap-2 border border-indigo-300 bg-blue-200 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-100" >
-      <label class="flex flex-row">
-        <button class="ml-1 font-bold text-xs sm:text-lg text-blue-700  h-12" (click)="onNextTheme(themes[currentThemeIndex + 2])" [disabled]="currentThemeIndex + 2 >= themes.length" >{{themes[currentThemeIndex + 2]}}</button>
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3">
-        </path>
-      </svg>
-      </label>
-    </div>
-  </div >
+  </div>
   <div class="flex flex-col justify-center items-center mt-8 sm:pl-16">
-    <div >
-      <h2 class="font-semibold text-2xl">Thema: {{initialTheme}}</h2>
+    <div>
+      <h2 class="font-semibold text-2xl">Thema: {{ initialTheme }}</h2>
     </div>
   </div>
 
   <div class="flex flex-col justify-start items-start mt-1 mb-2 pl-4 sm:pl-16"
        *ngFor="let data of selectedThemeQuestions; let i = index">
     <div class="m-2 font-medium mt-8">
-      <h1> Frage-{{i +1}}: {{data.question}}</h1>
+      <h1> Frage-{{ i + 1 }}: {{ data.question }}</h1>
     </div>
-    @if(data.hasPhoto){
-      <div class="flex justify-center items-center object-cover" >
+    @if (data.hasPhoto) {
+      <div class="flex justify-center items-center object-cover">
         <img src="../../../assets/images/{{data.id}}.png" alt="image">
       </div>
     }
@@ -56,7 +60,8 @@
               [checked]="i === data.correctAnswerIndex"
 
             />
-            <div class="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100">
+            <div
+              class="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-3.5 w-3.5"
@@ -73,7 +78,8 @@
               </svg>
             </div>
           </span>
-        <label class="mt-px cursor-pointer select-none font-normal text-gray-700" [for]="'option'+i">{{answer}}</label>
+        <label class="mt-px cursor-pointer select-none font-normal text-gray-700"
+               [for]="'option'+i">{{ answer }}</label>
       </div>
     </div>
   </div>
