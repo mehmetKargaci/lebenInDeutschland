@@ -5,16 +5,17 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: lid
-    image: dtuncbilek/lid:1.0.6
+    image: dtuncbilek/lid:1.0.7
     restart: unless-stopped
     ports:
       - "4242:80"
 
-
-
+# first use this...
 # docker compose build
-# docker push dtuncbilek/lid:1.0.5
+# docker push dtuncbilek/lid:1.0.7
 
 
-# docker build --platform linux/amd64 -t dtuncbilek/lid:1.0.6 .
+
+
+# docker build --platform linux/amd64 -t dtuncbilek/lid:1.0.7 .
 # docker push dtuncbilek/lid:1.0.6
