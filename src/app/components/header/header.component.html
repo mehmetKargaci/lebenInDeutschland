@@ -5,9 +5,9 @@
     </div>
   </div>
   <button class="space-y-1 group sm:hidden " [hidden]="isMenuOpen" (click)="toggleMenu()">
-    <div class="w-6 h-1 bg-orange-400"></div>
-    <div class="w-6 h-1 bg-orange-400"></div>
-    <div class="w-6 h-1 bg-orange-400"></div>
+    <div class="w-6 h-1 bg-gray-400"></div>
+    <div class="w-6 h-1 bg-gray-400"></div>
+    <div class="w-6 h-1 bg-gray-400"></div>
   </button>
   <ul [class.hidden]="!isMenuOpen"
       class="sm:hidden bg-gray-800 w-screen pb-1 absolute -top-0 group-focus:top-0 right-0 flex-col space-y-3 justify-end">
@@ -15,42 +15,41 @@
       <div class="w-6 h-1 rotate-45 absolute bg-white" ></div>
       <div class="w-6 h-1 -rotate-45 absolute bg-white"></div>
     </button>
-    <li class="flex justify-center w-full text-orange-300" (click)="toggleMenu()">
-      <a routerLink="/questions" routerLinkActive="text-white">
+    <li class="flex justify-center w-full text-gray-400" (click)="toggleMenu()">
+      <a routerLink="/questions" routerLinkActive="text-orange-300">
         Allgemeine Fragen
       </a>
     </li>
-    <li class="flex justify-center w-full text-orange-300" (click)="toggleMenu()">
-      <a routerLink="/training-menu" class="rounded-lg p-1 font-normal" routerLinkActive="text-white">
+    <li class="flex justify-center w-full text-gray-400" (click)="toggleMenu()">
+      <a routerLink="/training-menu" class="rounded-lg p-1 font-normal" routerLinkActive="text-orange-300">
         Trainieren Sie
       </a>
       </li>
-    <li class="flex justify-center w-full text-orange-300" (click)="toggleMenu()">
-      <a routerLink="/test" class="rounded-lg p-1 font-normal" routerLinkActive="text-white">
+    <li class="flex justify-center w-full text-gray-400" (click)="toggleMenu()">
+      <a routerLink="/test" class="rounded-lg p-1 font-normal" routerLinkActive="text-orange-300">
         Probeprufüng
       </a>
     </li>
   </ul>
   <div
-    class="hidden sm:text-gray-800 lg:flex lg:flex-row lg:justify-between lg:items-end lg:gap-2 lg:text-orange-300 lg:font-light">
-    <a routerLink="/questions" class="rounded-lg p-1 font-normal" routerLinkActive="text-white">
+    class="hidden sm:text-gray-800 lg:flex lg:flex-row lg:justify-between lg:items-end lg:gap-2 lg:text-gray-400 lg:font-light">
+    <a routerLink="/questions" class="rounded-lg p-1 font-normal" routerLinkActive="text-orange-300">
       Allgemeine Fragen
     </a>
-    <a routerLink="/training-menu" class="rounded-lg p-1 font-normal" routerLinkActive="text-white">
+    <a routerLink="/training-menu" class="rounded-lg p-1 font-normal" routerLinkActive="text-orange-300">
       Trainieren Sie
     </a>
-    <a routerLink="/test" class="rounded-lg p-1 font-normal" routerLinkActive="text-white">
+    <a routerLink="/test" class="rounded-lg p-1 font-normal" routerLinkActive="text-orange-300">
       Probeprufüng
     </a>
   </div>
 
 
-  <div class="flex flex-row justify-between items-end gap-2 text-orange-400">
-    <a routerLink="/" class="p-1 font-extrabold" routerLinkActive="text-white"
-       [routerLinkActiveOptions]="{ exact: true }">
+  <div class="flex flex-row justify-between items-end gap-2 text-gray-400">
+    <a routerLink="/" class="p-1 font-extrabold" routerLinkActive="text-orange-300" [routerLinkActiveOptions]="{ exact: true }">
       Startseite
     </a>
-    <a routerLink="/settings" class="p-1 font-extrabold text-white" routerLinkActive="text-white">
+    <a routerLink="/settings" class="p-1 font-extrabold text-gray-400 mr-2" routerLinkActive="text-orange-300" >
       Einstellungen
     </a>
   </div>

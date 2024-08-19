@@ -2,6 +2,7 @@ import {Component, inject} from '@angular/core';
 import { DialogRef, DialogCloseDirective } from '@ngneat/dialog';
 import {Data} from "@angular/router";
 import {UtilityService} from "../../core/services/utility.service";
+import {FacadeService} from "../../store/facade.service";
 
 
 @Component({
@@ -14,10 +15,12 @@ import {UtilityService} from "../../core/services/utility.service";
 export class BundeslandsComponent {
   ref: DialogRef<Data, boolean> = inject(DialogRef);
   utilityService = inject(UtilityService);
-  selectedBundesland = '';
+  facadeService = inject(FacadeService);
+  selectedBundesland = '1';
 
   selectBundesland(selectedBundesland: string) {
     this.selectedBundesland = selectedBundesland;
     this.utilityService.setItem('bundeslandID', this.selectedBundesland);
+    this.facadeService.setBundeslandID(selectedBundesland);
   }
 }

@@ -107,7 +107,7 @@ export class SelectorService {
       case '16':
         return 'Thüringen';
       default:
-        return 'Ungültige Bundesland ID';
+        return 'Baden-Württemberg';
     }
   }
 }
